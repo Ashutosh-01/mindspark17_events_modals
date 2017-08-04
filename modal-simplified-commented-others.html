@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "UTF-8">
+<meta name="viewport" content="width=device-width, initial scale=1.0" />
+<link href="animate.css" rel="stylesheet"/>
+<!-- Importing Google Fotns -->
+<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+<!-- Importing font awesome style sheet for donwload icons-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body { font-family: 'Exo 2' !important; }
+.modal {
+	display:none;
+	position:fixed;
+	z-index:1;
+	padding-top:3%;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	overflow:auto;
+	background-color:rgb(0,0,0);/*Fallback color for those browsers who don't support transparent backgrounds*/
+	background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+	background-color:#fefefe;
+	margin:auto;
+	height:80%;
+	padding:2%;
+	overflow-y:auto;
+	border:1px solid #888;
+	width:85%;
+	-webkit-box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -3px rgba(0,0,0,0.2);
+	box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -3px rgba(0,0,0,0.2);
+}
+/*Styling the paragraph inside the modal*/
+.modal-content > p {
+	text-align:center;
+	padding:1px;
+}
+/*Styling the clode button */
+.close {
+	color: #aaaaaa;
+	float:right;
+	font-size: 28px;
+	font-weight: bold;
+}
+/*Styling the register button */
+.register {
+	color: #aaaaaa;
+	text-align:center;
+	background-color:black;
+	position:relative;
+	font-size:20px;
+	font-weight: bold;
+	transition:all 0.2s;
+}
+.register:hover,
+.register:focus {
+	color: #000;
+	text-decoration: none;
+	cursor:pointer;
+	background-color:white;
+}
+
+/*Now styling the vertical tabs*/
+div.tab {
+	overflow:auto;
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
+	height:10%;
+	width:100%;
+}
+
+/*Buttons inside the tab*/
+div.tab button {
+	background-color: inherit;
+	float:left;
+	width:25%;
+	height:100%;
+	outline:none;
+	cursor:pointer;
+	text-align:center;
+	vertical:center;
+	font-size:130%;
+	vertical-align:center;
+}
+/*Change the background color of buttons on hover */
+div.tab button:hover {
+	background-color: #ddd;
+	/*Be sure to change the color from media queries also*/
+}
+/*The Hamburger menu for mobiles*/
+div.tab .icon {
+	display:none;
+}
+/*The close menu for mobiles*/
+div.tab .icon1{
+	display: none;
+}
+/*Active class for tablinks */
+div.tab button.active {
+	background-color:#ccc;
+	/*Be sure to change the color from media queries too */
+}
+/*Finally the tabcontent :p*/
+.tabcontent {
+	display:none;
+	height:64%;
+	overflow:auto;
+	padding : 6px 12px;
+	border: 1px solid #ccc;
+	border-top : none;
+	transition:0s !important;
+}
+/*Let's style the modal button too 8D */ 
+.modal-button {
+	position:relative;
+	display:block;
+	margin:30px auto;
+	padding:0;
+	max-width:50%;
+	cursor:pointer;
+	overflow:hidden;
+	font-size:25px;
+	text-align:center;
+	vertical-align:middle;
+	border-width:0;
+	outline:none;
+	border-radius:2px;
+	box-shadow: 0 1px 4px rgba(0,0,0,0.6);
+	background-color: #2ecc71;
+	color: #ecf0f1;
+	transition: background-color 0.5s;
+}
+.modal-button:hover ,
+.modal-button:focus {
+	background-color:#27ae60;
+}
+.modal-button > * {
+	position:relative;
+}
+.modal-button span {
+	display:block;
+	padding: 12px 24px;
+}
+.modal-button:before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: block;
+	width: 0;
+	padding-top: 0;
+	border-radius: 0;
+	background-color: rgba(236,240,241,0.5);
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+
+}
+.modal-button:active:before {
+	width:120%;
+	padding-top:120%;
+	transition: width 0.2s ease-out, padding-top 0.2s ease-out;
+}
+@media screen and (max-width: 1062px) {
+	.modal-button {
+		width:50%;
+	}
+	/*Hiding the inactive members of tablinks*/
+	div.tab button:not(.active) {
+		display:none;
+		width:100%;
+		padding:5px;
+		height:10%;
+	}
+	div.tab button {
+		border:none;
+		outline:none;
+	}
+	div.tab button.active {
+		background-color:rgba(0,0,0,0);
+	}
+	div.tab a{
+		color:black;
+		text-decoration: none;
+	}
+	div.tab a.icon {
+		float:right;
+		display:block;
+		padding:10px;
+		top:0;
+		right:0;
+	}
+	div.tab a.icon1 {
+		float:right;
+		display:none;
+		padding:10px;
+		top:0;
+		right:0;
+	}
+	/*Following are the responsive tag styling */
+	div.tab.responsive {
+		position:relative;
+		height:auto;
+	}
+	div.tab.responsive a.icon {
+		position:absolute;
+		display:none;
+		visibility:hidden;
+		right:0;
+		top:0;
+	}
+	div.tab.responsive a.icon1 {
+		position:absolute;
+		display: block;
+		right: 0;
+		top: 0;
+	}
+	div.tab.responsive button {
+		float:none;
+		display: block;
+		padding:10px;
+		height:10%;
+		width:100%;
+		vertical-align: middle;
+		text-align:left;
+	}
+}
+/*Now styling for the desktop version */
+@media screen and (min-width: 1063px){
+	div.tab {
+		float:left;
+		border: 1px solid #ccc;
+		background-color: #f1f1f1;
+		width:20%;
+		height:75%;
+		display:inline-block;
+		position:relative;
+	}
+	div.tab button {
+		display:block;
+		background-color: inherit;
+		color:black;
+		padding: 2% 2% 2% 2%;
+		width:100%;
+		padding-left:20px;
+		height:10%;
+		border:none;
+		outline:none;
+		font-size:140%;
+		vertical-align: middle;
+		cursor:pointer;
+		text-align: left;
+		transition: 0.3s;
+	}
+	div.tab button:hover {
+		background-color: #ddd;
+	}
+	div.tab button.active {
+		background-color: #ccc;
+	}
+	.tabcontent {
+		float:left;
+		padding :0px 12px;
+		border: 1px solid #ccc;
+		width:77%;
+		display:none;/*Stay hidden by default*/
+		border-left:none;
+		height:75%;
+	}
+}
+</style>
+</head>
+<body>
+<!-- Import Jquery From Google Hosted API -->
+<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script-->
+<!-- Remember to comment one thing !! Don't import 2 jqueryies as they may have conflicts and other bad stuff -->
+<!-- Or the local script -->
+<script src="jquery.js"></script>
+<!--Now comes the jquery script that handles modal and its animations and stuff , I prefer this inline only  -->
+<script>
+$(document).ready(function () {
+	$(".close").click(function() {
+		$(this).parent().parent().slideUp(1);
+	});
+	$(".icon").click(function() {
+		$(this).parent().toggleClass("responsive");
+	});
+	$(".icon1").click(function() {
+		$(this).parent().toggleClass("responsive");
+	});
+	$(".tablinks").click(function() {
+		$(".tablinks").removeClass("active");
+		$(this).addClass("active");
+		$(this).parent().removeClass("responsive");
+	});
+	$(".modal").click(function(e) {
+        if ($(e.target).parents('.modal-content').length || $(e.target).hasClass("modal-content")) { 
+        } else { 
+           $(this).delay(745).slideUp("fast");
+	   	   $(this).children(".modal-content").removeClass("flipInX").addClass("flipOutX");
+	       $(".tablinks").removeClass("active");
+	       $(".tab button:first-child").addClass("active");
+        }
+    });
+});
+function openInfo(id) {
+	$(".tabcontent").slideUp(1);
+	$("#" + id).slideDown(1);
+}
+function openModal(id) {
+		$("#" + id).slideDown("fast");
+		$("#" + id).children(".modal-content").removeClass("flipOutX").addClass("animated flipInX");
+		$(".tabcontent").slideUp(50);
+		$(".first").slideDown(50);
+}
+</script>
+<h2 style="text-align:center">Modal Template</h2>
+
+<!-- Robustus -->
+<button onclick="openModal('modal-32')">Search N' Destroy</button>
+<button onclick="openModal('modal-33')">Robowars</button>
+<button onclick="openModal('modal-36')">Virtual Reality</button>
+<button onclick="openModal('modal-37')">The Amazing Race</button>
+<button onclick="openModal('modal-38')">Bull Run</button>
+<button onclick="openModal('modal-39')">Bidzkreig 1</button>
+
+<div class="modal" id="modal-32">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Search N' Destroy</h1>
+		<span style="float:right;"><button class="register" href="https://www.google.co.in" target="_blank">REGISTER</button></span>
+		<p style="text-align:center;">Build a line tracer bot and complete the given course in minimum time</p>
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-32')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-32')">Sturcture</button>
+			<button class="tablinks" onclick="openInfo('rules-32')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-32')">FAQs</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-32">
+			<h2>Objectives :</h2>
+			<p>
+			Search N Destroy is basically a line following and maze solving competition.
+			A track of white line on black background and/or black line on white background will be 
+			laid out <b>with codes placed at some places</b> and an <b>autonomous robot</b> has to follow that line, 
+			decode the path <b>based upon that code</b> and complete a task.<br>
+<!--<ol>
+<li>
+To test the metallographic skills of students for sample preparation.
+</li><li>
+To test the logical reasoning ability o
+f students by observation of 
+microstructures of metals and alloys.
+</li><li> To make students explore more about the metallic parts used in day to day life 
+and in industry at large scale and to explore their microstructural features by 
+thinking broader at “Micro”
+level.</li></ol>-->
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-32">
+			<h2>Event Structure :</h2>
+			<p>
+			<b>Task:</b><br>
+			<ol>
+			<li>
+			Teams must build an autonomous robot which can trace line, decode the code and 
+			make turning decisions as directed by the code and finally push the box in the space provided.</li>
+			<li>
+			There will be checkpoints placed at certain locations for 
+			repositioning of the bot in case of hand touch.</li>
+			</ol>
+			<br>
+			<b>Note: </b>The event to push box by robot and making it to deposit in
+			the gap by is termed as <b>destroying of opponent’s territory.</b> 
+			The robot should not physically damage the wall and the box.
+			<br><br>
+			<b>Special features: </b> There will be a binary code painted on some parts of the track. 
+			The code consists of 3 black/white squares placed in <b>a line perpendicular to the track.</b>
+			The side of the square will be equal to the width of the track. 
+			The code will decide whether the bot has to take a left or right on the upcoming cross shape track or ‘T’ shape track.
+			The “intelligent” bot is expected to read the code as it moves over it and decode it, to find out the next direction to go.. 
+			Correct decoding of the code and hence the correct path tracing will earn you points. 
+			The actual code at the time of competition will be revealed only after the competition starts. (i. e. after dry run).
+			<br><br>
+			This code-decoding part is an <b>innovative part of the competition</b> designed for the challenge takers.
+			Following the code will fetch you more points than simple line follower.
+			So if you think you can make an “intelligent” line follower bot, you can design considering the code.
+			<br><br>
+			However, the team can go ahead with a normal line follower bot and still can take part in the competition.
+
+<h2>Team and Fee Structure</h2>
+<b>Team size </b>: Maximum 5 participants per team. <br>
+ <b>Participation Fee </b> : &#8377; 250/- per team<br>
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-32">
+			<h2>Rules :</h2>
+			<p>
+			<b>Competition:</b><br>
+			<ol><li>  Each contesting team will be given 2 minutes as dry run on arena before the match.</li>
+				<li> In dry run, team can calibrate sensors and can explore the entire arena.</li>
+<li> After dry run, programming of robot is not allowed.</li>
+<li> The starting procedure of the bot should be simple and should not involve giving the bot any manual force or impulse in any direction.</li>
+<li> Duration of match is 4 minutes. </li>
+<li> Once match is started only one member of each team i.e. the operator will be allowed to enter the arena after permission from organizers.</li>
+<li> The match shall start from the start box. The machine will start in only one direction as specified by the organizers.
+ It cannot start in either direction. The operator may abort run at any time.</li>
+ <li> The robot should not physically damage the path and the box.</li>
+ <li> The team that scores maximum points wins.</li></ol>
+ <br>
+ <b>Hand Touch:</b><br>
+ <ol>
+ <li> If an operator touches the robot during run, this will be considered as a hand-touch and
+ the robot must be put back at the last restart or checkpoint crossed.
+ (Robot can be removed after completion of match, i.e. after placing the box.)</li>
+ <li> The operator can take any number of hand touches with prior permission from judge. 
+ There is NO penalty for a hand touch (with prior permission) 
+ though the robot must be placed back at the start or last checkpoint crossed.</li>
+ <li> Even if a participant takes a hand touch, the clock will keep running and 
+ will not be reset as the robot starts again from the previous restart point.</li>
+ <li> If a robot ‘gets into trouble’ the operator can ask the judge for permission to take a hand touch and restart the robot at start or last checkpoint.
+ If the operator touches the robot without prior permission of the judge during run time, 10 points will be deducted.</li>
+ </ol>
+ <br>
+ <b>General Rules:</b><br>
+ <ol>
+ <li> Any team that is not ready at the time specified will be disqualified 
+ from the competition automatically. Programming of bot is not allowed once the competition starts.</li>
+ <li> The machine will be checked for its safety before the match and will be discarded if found unsafe for other participants and spectators.</li>
+ <li> It should not make any marks on the floor of the arena. Any robot found damaging the arena will be immediately disqualified.</li>
+ <li> Only one member of the team is allowed to handle the robot.</li>
+ <li> Participants are not allowed to keep anything inside the arena other than its autonomous robot.</li>
+ <li> Laptops/personal computers are not allowed near the arena. Other Wi-Fi, Bluetooth, etc. devices must be switched off.
+ The organizers hold the right to check for these devices and their usage.</li>
+ <li> No robot can use any flammable, combustible, explosive or potentially dangerous processes.</li>
+ <li> Only two switches can be present on the bot.</li>
+ <li> The time measured by the organizers will be final and will be used for scoring the teams.
+ Time measured by any contestant by any other means is not acceptable for scoring.</li>
+ <li> Operator <b>must</b> wear socks.</li>
+ <li> In case of any disputes/discrepancies, the organizers‟ decision will be final and binding. 
+ The organizers reserve the rights to change any or all of the above rules as they deem fit.</li>
+ <li> Change in rules, if any, will be highlighted on the official MindSpark’17 website(<a href="https://www.mind-spark.org">www.mind-spark.org</a>).
+ Participants are requested to check the website regularly for updates.</li>
+ </ol>
+		</p>
+		</div>
+		<div class="tabcontent" id="faq-32">
+		<h2>FAQs</h2>
+		<p>
+		<b> Arena :</b><br>
+		<ol>
+		<li> All dimensions are in mm.</li>
+<li> Maximum dimensions of arena will be 4000 x 4000 mm.</li>
+<li> Width of track will be 30 mm.</li>
+<li> Dimensions of start zone is 200 x 200 mm.</li>
+<li> The floor of arena shall be made of wood (plywood) and finished with vinyl sheet. Do not assume the floor provides a given amount of friction.</li>
+<li> Participants shall not assume the track is consistently white or the floor is consistently black. Fading may occur.</li>
+<li> The track may contain discontinuities at certain places.</li>
+<li> The dimensions of the arena would be accurate to within 5% or 20 mm bidirectional.</li>
+<li> Do not make any assumptions about amount of sunlight, incandescent light or fluorescent light that may be present at the contest site.</li>
+<li> Dimension of Box will be 100 x 100mm.</li></ol>
+<br>
+<b>Scoring system:</b>
+<ol>
+<li> Taking correct decision as dictated by the code: 20 points </li>
+<li> Passing certain checkpoints will earn you 10 points each. They are indicated in the figure.</li>
+<li> The placing of box carries 30 points.</li>
+</ol>
+<br>
+<b>Tie breakers:</b>
+In case of a tie of scores between two teams, teams will be given preference based on the following criterions in the given order
+<ol>
+<li> Minimum time taken by robot to cross same number of checkpoints.</li>
+<li> Minimum number of hand touches.</li></ol>
+<br>
+<b>Certificate policy:</b>
+Certificates will be given to all the teams.
+<br>
+<b>Team Specifications:</b>
+<ol>
+<li> A team once registered, cannot register again, even with a different name.</li>
+<li> A team may consist of maximum 5 students.</li>
+<li> A team may consist of members from different educational institutes.</li></ol>
+<br><b>Note</b>
+<ol>
+<li> NO power supply will be provided during match. However it can be provided for battery charging purposes.</li>
+<li> There will be no provision for computer, programmer, IC, etc by the organizers.</li></ol>
+			<button class="modal-button"><span>Download   <i class="fa fa-download"></i></span></button>
+			</p>
+		</div>
+</div>		
+</div>
+<div class="modal" id="modal-33">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Robowars</h1>
+		<span style="float:right;"><button class="register" href="https://www.google.co.in" target="_blank">REGISTER</button></span>
+		<p style="text-align:center;">Immobilize your opponent's robot to win this War of Robots</p>
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-33')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-33')">Sturcture</button>
+			<button class="tablinks" onclick="openInfo('rules-33')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-33')">FAQs</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-33">
+			<h2>Objective :</h2>
+			<p>
+			In this mortal combat, reach to the top by being the last bot standing. Crush your opponent because only the fittest will survive.
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-33">
+			<h2>Event Structure :</h2>
+			<p>
+			<ol>
+			<li> Each match will be of duration <b>5 minutes</b> and winner will be decided based on certain criteria.</li>
+<li> The winners of the qualifier matches will be declared as per the points they would achieve in the matches.</li>
+<li> Format of matches (Knockout or League) will be decided depending on the number participating teams.</li>
+<li> There may be a possibility that in a special case there may be more than 2 teams competing in a match
+<b>Special Cases</b> are as follows:
+<ol>
+<li> If there is a tie of scores between more than 2 teams.</li>
+<li> If the number of participating teams do not fit within the desired format.</li>
+</ol>
+</li>
+</ol>
+<h2>Team and Fee Structure</h2>
+<b>Team size </b>: Maximum 5 participants per team. <br>
+ <b>Participation Fee </b> : &#8377; 250/- per team<br>
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-33">
+			<h2>Rules :</h2>
+			<p>
+			<b>General:</b><br>
+			<ol>
+			
+<li> Participants should build a single robot.</li>
+<li> Robots will be tested for dimensions & safety before each match.</li>
+<li> Violation of rules will lead to disqualification of the respective team.</li>
+<li> Points will be deducted in case of multiple operators in a single match.</li>
+<li> The organizers reserve the rights to change any or all the above rules as they deem fit.</li>
+<li> In case of a match resulting in a tie, rematch of 2 minutes will be played. 
+If further tie occurs team scoring highest points in first 3 minutes of the main match will be declared as a winner.</li></ol>
+<br>
+<b>Criteria for Victory:</b>
+<ol>
+<li> A robot is declared victorious if its opponent is immobilized.</li>
+<li> A robot will be declared immobile if it cannot show linear or rotational motion of at least one foot within a time of 30 seconds.
+<ol><li> A robot with one side of its drive train disabled will not be counted immobilized, if it can demonstrate some degree of controlled movement.</li>
+<li> In case both the robots remain mobile after the end of the round then the winner will be decided subjectively.</li></ol></li>
+<li> Points will be given based on aggression, damage, control and strategy, fall in the pit.</li></ol>
+<br>
+<b>Aggression:</b>
+Aggression is judged by the frequency, severity, boldness and effectiveness of attacks deliberately initiated by the robot against its opponent. If a robot appears to have accidentally attacked an opponent, that act will not be considered Aggression.
+<br><br>
+<b>Control:</b>
+Control means a robot can attack an opponent at its weakest point, use its weapons in the most effective way, avoid Arena Hazards, and minimize the damage caused by the opponent or its weapons.
+<br><br>
+<b>Damage:</b>
+Through deliberate action, a robot either directly, or indirectly using the Arena Hazards, reduces the functionality, effectiveness or defensibility of an opponent. Damage is not considered relevant if a robot inadvertently harms itself. Also, if a pressure vessel or a rapidly spinning device on a robot fragments, any damage to the opponent will not be considered "deliberate".
+<br><br>
+<b>Strategy:</b>
+The robot exhibits a combat plan that exploits the robot's strengths against the weaknesses of its opponent. Strategy is also defined as a robot exhibiting a deliberate defense plan that guards its weaknesses against the strengths of the opponent. Strategy can also involve using the Arena Hazards to gain an advantage.
+<br><br>
+<b>Disqualification:</b>
+<ol>
+<li> Robots intentionally damaging the wires of the opponent will be disqualified.</li>
+<li> Robots intentionally and extensively damaging the arena will be disqualified.</li>
+<li> If the wires of robot are cut because of its own strategy and if fail to repair within match time then the team will be disqualified.</li></ol>
+<b>Note: There is no separate point allocation to the opposition in case if the bot is pushed or is stuck within the pit area.</b>
+<br><b>Game Field:</b>
+<ol>
+<li> Outer part of the field is a hexagon of side 3810mm (300 in) in having inner hexagon of side 298 in in (actual game field).</li>
+<li> There is starting zone of size 750 x 750mm.</li>
+<li> Material used for game field will be made of plywood.</li>
+<li> There will be a safety wall provided around the game field. Height of safety wall will be 1.5 meters and it will be made up of fence and acrylic.</li></ol>
+<b>Depth of the pit will be around 60mm-80mm and the size of each pit is 3824 x 100 mm2</b>
+<br><br><b>Bot Dimensions and Fabrications:</b>
+<ol>
+<li> The robot should fit in the box of 750 mm x 750 mm x 1000 mm (l x b x h) always.
+<b>Note: The external device used to control the robot or any external tank is not included in the size constraint.</b></li>
+<li> The robot should not exceed 40 kg of weight including the weight of pneumatic source/tank.
+ If the tank is external, its weight would be considered 1.5 times its actual weight.</li>
+<li> Weight of wireless robots and robots having on-board power supply will be counted as 0.6 times the actual weight of robot.</li>
+<li> Weight of the remote controller and adapter will be considered.</li></ol>
+
+<b>Motion of the Robot:</b>
+<ol><li> Jumping and hopping is not allowed.</li>
+<li> Flying (using air-foil, helium balloons, ornithopters etc.) is not allowed.</li></ol>
+
+<b>Control of Robot:</b>
+<ol><li> Robot can have a wired or wireless control.</li>
+<li> Off board power supplies are allowed.</li>
+<li> If the machine is wired then the wire should remain slack under all circumstances during the competition.
+ All the wires coming out of the machine should be stacked as a single unit. The wires should be properly insulated. 
+ Minimum length of wire should be 5 meter.</li>
+<li> In case of wireless control the case of frequency interference with other teams will not be considered for rematch or for result.</li>
+<li> The control wires should be drawn 1 meter above the ground.</li></ol>
+
+<b>Battery and Power:</b>
+<ol><li>The machine can be powered electrically only. Use of an IC engine in any form is not allowed. 
+On board Batteries, must be sealed, immobilized-electrolyte types (such as gel cells, lithium, NiCad, NiMH, or dry cells).</li>
+<li> The electric voltage between 2 points anywhere in the machine should not be more than 36 V DC at any point of time. 
+If a team is using AC voltage in any of its parts, then the voltage should not exceed 36 V AC at any point of time as well.</li>
+<li> All efforts must be made to protect battery terminals from a direct short and causing a battery fire,
+ failure to do so will cause direct disqualification.</li>
+<li> Use of damaged, non-leak proof batteries may lead to disqualification.</li>
+<li> Special care should be taken to protect the on-board batteries.</li>
+<li> Change of battery will not be allowed during the match.</li></ol>
+<b>Hydraulics:</b>
+<ol><li> Robot can use non-inflammable liquid to actuate hydraulic devices.</li>
+<li> All hydraulic components on-board a robot must be securely mounted.</li>
+<li> Special care must be taken while mounting pump, accumulator and armour to escape the robot.</li>
+<li> Whole hydraulic systems should be leak proof. Maximum allowed pressure is 8 bars.</li>
+<li> Participant must be able to indicate the used pressure with integrated or temporarily fitted pressure gauge.</li></ol>
+
+<b>Pneumatics:</b>
+<ol><li> Robot can use pressurized non-inflammable gases to actuate pneumatic devices. Maximum allowed outlet pressure is 8 bars. The storage tank and pressure regulators used by teams need to be certified. Teams using pneumatics are
+required to produce the Safety and Security letters at the registration Desk at the venue. Failing to do so will lead to direct disqualification.</li>
+<li> Participants must be able to indicate the used pressure with integrated or temporarily fitted pressure gauge. 
+Also, there should be provision to check the cylinder pressure on the bot.</li>
+<li> You must have a safe way of refilling the system and determining the on-board pressure. 
+All pneumatic components on board a robot must be securely mounted. 
+Care must be taken while mounting the pressure vessel and armour to ensure that if ruptured it will not escape the robot. 
+Failing to do so will lead to direct disqualification.</li></ol>
+<b>Weapons:</b>
+Robots can have any kind of cutters, flippers, saws, lifting devices, spinning hammers as weapons. Exceptions and Limitations for weapons:
+<ol><li> Liquid projectiles.</li>
+<li> Any kind of inflammable liquid.</li>
+<li> Flame-based weapons.</li>
+<li> Any kind of explosive or intentionally ignited solid or potentially ignitable solid.</li>
+<li> Nets, tape, glue, chains or any other entanglement device.</li>
+<li> High power magnets or electromagnets.</li>
+<li> Radio jamming, lasers, tesla coils, or any other high-voltage device.</li>
+<li> Tethered or un-tethered projectiles.</li>
+<li> Spinning weapons which do not meet the arena at any point of time are allowed. In any case the arena should not be damaged by any bot.</li></ol>
+<b>Safety Rules:</b>
+<ol><li> Special care should be taken to protect the on-board batteries and pneumatics, robot without proper protection will not be allowed to compete.</li>
+<li> Robots must be activated in the arena or with expressed consent of the event coordinators.</li>
+<li> All weapons must have a safety cover on any sharp edges.</li>
+<li> All participants build and operate robots at their own risk. Please take care to not hurt yourself or others when building, testing and competing.
+ Organisers will not be responsible for any injuries to operator or team members.</li></ol>
+<br>
+<b> A robot that is deemed unsafe by the judges after the match has begun will be disqualified and therefore declared the loser. 
+The match will be immediately halted and the opponent will be awarded a win.</b>
+<br>
+<b>Judges and Event Head's decision will be treated as final and binding to all.</b>
+		</p>
+	</div>
+	
+		<div class="tabcontent" id="faq-33">
+		<h2>FAQs</h2>
+		<p>
+		<br>
+		Q. Can one team register with different names?<br>
+A. A team, once registered, cannot register again, even with a different name.<br><br>
+Q. Who can participate?<br>
+A. All students with a valid college ID card are eligible to participate. Teams will be required to show ID of all members.<br><br>
+Q. Is on the spot registration available?<br>
+A. Yes, teams can register on the spot.<br><br>
+Q. Can team members be from different colleges?<br>
+A. Yes, team members can from different colleges. Although one participant may not be a part of two team for the same event.<br><br>
+Q. Are there any points allotted if the bot gets stuck or is pushed in the pit?<br>
+A. NO, there is no such criteria for judgement.<br><br>
+<b>EVENT HEADS:</b><br>
+Anirudh Peri : +91 98676 12443<br>
+Yunus Pirjade : +91 96378 80658<br>
+Email ID : robowars@mind-spark.org
+			<button class="modal-button"><span>Download   <i class="fa fa-download"></i></span></button>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="modal" id="modal-36">
+
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Virtual Robotics</h1>
+		<span style="float:right;"><button class="register" href="https://www.google.co.in" target="_blank">REGISTER</button></span>
+		<p style="text-align:center;">Represent robotic concepts (eg. Robotic arm) using simulation softwares like Simulink</p>
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-36')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-36')">Sturcture</button>
+			<button class="tablinks" onclick="openInfo('rules-36')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-36')">FAQs</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-36">
+			<h2>Objectives :</h2>
+			<p>
+This competition tests the designing skills of the participants, wherein they present original ideas, which, if given the right platform, can transform our day to day lives.
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-36">
+			<h2>Structure :</h2>
+			<p>
+			<ul>
+			<li>Contestants will design 3D models based on certain themes of Robotics.</li>
+			<li>The Contestants will give a short presentation explaining in brief, their models.</li>
+			</ul>
+			<b>ROUNDS:</b><br>
+The competition will have a single round where in all the contestants will present their ideas.<br>
+<b>Themes:</b><br>
+The designs that will be presented by the contestants should fall into one of the following four categories:
+<ol>
+<li> Domestic Robots: They may include robots that make daily household work simpler.</li>
+<li> Robotic Arms: This category includes innovative designs of robotic arms and/or grippers that can be used for picking up various objects.</li>
+<li>Industrial Robots: Robots under this category are the ones which are used in industries to make the manufacturing processes automated and more efficient.</li>
+<li>Military Application Robots: Robots that can be used for surveillance or can move through rough terrains fall into this category.</li>
+</ol>
+<b>Competition Rules:</b><br>
+<ul>
+<li>The 3D model should be created on any of the following software:
+<ol>
+<li> SOLIDWORKS
+<li> CATIA
+<li> CREO
+</ol>
+
+<li>Simulation of the 3D model is not compulsory but would be preferred.
+<li>The presentation delivered by the participant should be under 20 minutes.
+<li> If contestants have participated as a team, each member should present the idea for a maximum of 10 minutes.
+<li> Contestants should carry their own laptop containing the design as well as a USB drive containing the design files.
+</ul>
+<b>Criterion for Winner:</b><br>
+The contestant with the most innovative design in any of the above-mentioned categories will be decided as the winner by the judges.
+<h2>Team and Fee Structure :</h2>
+Team size : Maximum 2 participants per team<br>
+Registration Fee : &#8377; 50/- per team.
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-36">
+			<h2>Rules :</h2>
+			<p>
+			<ol>
+		<li> The contestants must carry identification cards of their respective educational institutes.
+<li> Contestants from different educational institutes can participate as a team.
+80
+<li> Contestants can register multiple times provided that no two designs belong to the same theme, however each registration will be treated separately.
+<li> The decision of the Judges’ and the event heads’ will be final and binding to all.	
+<li>Rules  may  be  changed  without  prior  intimation.  Participants  are  requested  t
+o 
+check the MindSpark’17 website (
+<a href="https://www.mind-spark.org">www.mind-spark.org</a>
+) regularly for updates.</li></ol>
+			</p>
+		</div>
+		<div class="tabcontent" id="faq-20">
+		<h2>FAQs</h2>
+			<button class="modal-button"><span>Download   <i class="fa fa-download"></i></span></button>
+			</p>
+		</div>
+	</div>
+</div>
+</div>
+
+<div class="modal" id="modal-37">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">The Amazing Race</h1>
+		<span style="float:right;"><button class="register" href="https://www.google.co.in" target="_blank">REGISTER</button></span>
+		<p style="text-align:center;">Treasure Hunt within 5 km radius of COEP</p>
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-37')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-37')">Sturcture</button>
+			<button class="tablinks" onclick="openInfo('rules-37')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-37')">FAQs</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-37">
+			<h2>Objective :</h2>
+			<p>
+			This is a competitive treasure hunt designed for the tacticians and strategists. 
+			It involves a series of clues which lead the participant from one location to another. 
+			Quick thinking and problem solving abilities are required in this event.
+			The teams must compete to be the fastest by solving the clues and finding next locations.
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-37">
+			<h2>Event Structure :</h2>
+			<p>
+			<b>Round 1 (Elimination Rounds): </b>The elimination rounds will occur on Day 1 and Day 2, first half of the three days of MindSpark’17.<br>
+			<b>Round 2 (Final Round): </b>Second half of Day 2 of MindSpark’17.<br>
+<br><b>Duration: </b>The event will begin in the morning and can continue till 6 pm.
+<h2>Team and Fee Structure</h2>
+<b>Team size </b>: Maximum 2 participants per team. <br>
+ <b>Participation Fee </b> : &#8377; 100/- per team.<br>
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-37">
+			<h2>Rules :</h2>
+			<p>
+			<ol>
+			
+			<li> The team has complete discretion in formulating and applying all rules and penalties. 
+			These rules may be modified or altered at the discretion of the Amazing Race Team, as required. </li>
+			<li> The Participants are expected to follow all the rules and regulations laid by the Motor Vehicles Act.
+			Violations will result in disqualification of the team. Each team would only be allowed to take part after producing 
+			a valid permanent driving license.</li>
+			<li> If any information provided by the team is found to be false or incorrect, 
+			the team will be disqualified. </li>
+			<li> The timings recorded by The Amazing Race volunteers would be deemed final and any arguments with respect
+			to the recorded time will not be entertained.</li>
+			<li> Physical damage or irresponsible handling such as tearing in part or totality of the checkpoint list will lead to disqualification.</li>
+			<li> The team spotted littering or throwing garbage along the route of the race, or altering or tampering unnecessarily with any of the 
+			natural surroundings will be disqualified. </li>
+			<li> No outside (non- team member) support is allowed between the start and finish lines of the race. 
+			Only the team is allowed in any official race area. </li>
+			<li> Event organizers reserve the right to prohibit a competitor from starting or finishing any segment of the Race on medical grounds.
+			Any such decision of the Race committee is final and binding to everyone involved.</li>
+<li> No person can be a part of multiple teams for this event. In case of any clashes, the organizers of the event will not be responsible.</li> 
+<li> No two teams will be allowed to work on a particular problem together. It is a competition and ultimately each one has to compete with each other. </li>
+<li> Participants are requested to strictly follow traffic rules. In case of traffic violation, 
+The Amazing Race team will not help/ be responsible for any further consequences.</li>
+ <li> The Amazing Race Team reserves the right to impose time penalties or to disqualify teams for violation of any of these rules, 
+ contrary to the best interest of the event. Failure of any team member or a team to immediately and respectfully comply, 
+ with any direction or decision of the organizers, will result in disqualification of the team. </li>
+ <li> MindSpark team will not be responsible for any damage done to people, property or vehicles. 
+ The damage has to be reimbursed by the participant in concern. </li>
+ <li> Some essentials for the event include smartphones with cameras, and other such necessary applications. 
+ These will be beneficial for the participants during the event and the participants are requested to carry these with them on their personal responsibility.</li>
+ <li>Rules may be changed without prior intimation. Participants are requested to check the official MindSpark’17 website 
+ (<a href="https://www.mind-spark.org">www.mind-spark.org</a>) regularly for further updates.</li>
+ </ol>
+		</p>
+	</div>
+	
+		<div class="tabcontent" id="faq-37">
+		<h2>FAQs</h2>
+		<p>
+		Q. Who can participate?<br>
+		A. Anyone can participate in this event. It will be open for all. You need not have a lot of technical knowledge to complete the tasks.
+		The only requirement is a Legal Driving License in case the team uses their personal transport.<br><br>
+Q. Is physical fitness a necessary requirement?<br>
+ A. Absolutely not. However, you should be able to perform some necessary physical tasks but the race focuses more on logical abilities.<br><br>
+Q. Do I require a vehicle?<br>
+ A. Yes. One vehicle is necessary for the team. The race might be possible without a vehicle but a team with a vehicle will
+ have an added advantage over the team without a vehicle.<br><br>
+Q. My knowledge about the city is not good. Can I still participate?<br>
+ A. Yes, you surely and absolutely can. You will be provided with a customized map of the city.<br><br>
+Q. I’m taking part in another event in MindSpark; what happens if the timings of the event clashes?<br>
+ A. The Amazing Race Team will not be responsible for any clashes with time. Each event will operate according to its own schedule and 
+ the participants are required to manage their own schedule.<br><br>
+
+<b>EVENT HEADS:</b><br>
+Suruchi Jadhav : +91 99221 51351<br>
+Nipun Jain : +91 85540 54445<br>
+Mahesh Bhakre : +91 72185 58173<br>
+Email ID : amazingrace@mind-spark.org
+			<button class="modal-button"><span>Download   <i class="fa fa-download"></i></span></button>
+			</p>
+		</div>
+	</div>
+</div>
+</div>
+
+<div class="modal" id="modal-38">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Bull Run</h1>
+		<span style="float:right;"><button class="register" href="https://www.google.co.in" target="_blank">REGISTER</button></span>
+		<p style="text-align:center;">Virtual Stock Market(bidding and winning)</p>
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-38')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-38')">Sturcture</button>
+			<button class="tablinks" onclick="openInfo('rules-38')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-38')">FAQs</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-38">
+			<h2>Objective :</h2>
+			<p>
+			A stock market simulation event to test your skills as an investor and stock trader. 
+			As live market conditions are simulated it will require the participants to use analytical skills in order to correctly choose the companies to invest in.
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-38">
+			<h2>Event Structure :</h2>
+			<p>
+			<b>Round 1:</b> Simple Question/Answer Round. Serves as the Elimination Round.<br>
+<b>Round 2:</b> Based on the Indian Market<br>
+<b>Round 3:</b> Final Round, based on the Indian + International Market<br>
+<b>Any other details</b> of the event will be revealed <b>on the spot.</b>
+<h2>Team and Fee Structure</h2>
+<b>Team size </b>: Maximum 2 participants per team. <br>
+ <b>Participation Fee </b> : &#8377; 100/- per team.<br>
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-38">
+			<h2>Rules :</h2>
+			<p>
+			<ol>
+			<li>This event shall be an <b>open-internet</b> event. Therefore, use of mobile phones and other electronic devices are permitted.</li>
+<li> At the start of Round 1, participants shall be given <b>&#8377;20,00,000/-</b>, in <b>virtual money</b>, and the same <b>&#8377;20,00,000/-</b> shall be given for Round 2.
+ NOTE: If you have money left from Round 1, it will <b>NOT</b> be added in Round 2.</li>
+<li> Based on the information that will be given to the participants, they will have to buy and/or sell shares of various companies, to earn maximum profits.</li>
+<li> Round 1 will be taking place in various slots. Therefore, participants must ensure that their contact information is valid,
+ so as to allow us to inform you well in advance regarding any changes to the timings of your slots.</li>
+<li> This event will feature a Live Simulation of the stock market, wherein constant updates will be given to the participants during the event.
+ Participants must check these updates and accordingly, make their necessary decisions.</li>
+<li> Participants <b>must always</b> have their <b>College ID and their registration receipts</b> with them, and must be shown if asked.</li>
+<li> In case of any dispute, the decision of both the judges and the organizers shall be final and binding to all.</li>
+	 <li>Rules may be changed without prior intimation. Participants are requested to check the official MindSpark’17 website 
+ (<a href="https://www.mind-spark.org">www.mind-spark.org</a>) regularly for further updates.</li>
+ <li> All undergraduate and postgraduate students are allowed to participate.</li>
+ </ol>
+		</p>
+	</div>
+	
+		<div class="tabcontent" id="faq-38">
+		<h2>FAQs</h2>
+		<p>
+		Q. What is the team structure?<br>
+A. A team may consist of either 1 participant, or a team of 2 participants, but not more than that.<br><br>
+Q. Who can participate in this event?<br>
+A. All those who are keen on testing their market skills or are interested in investing with shares,
+ or simply just want an experience of a stock market, can participate.<br><br>
+Q. Must I have knowledge of the stock market, to take part in this event?<br>
+A. Not necessary. You need to basically interpret the given news and updates regularly, have confidence, alertness and be quick.<br><br>
+Q. How should I decide on how to buy or sell shares?<br>
+A. You will have to interpret the news and the updates logically, and relate it to the effect of other shares, in terms of the cost.<br><br>
+Q. How will the event take place?<br>
+A. During Rounds 2 and 3, participants will be given access to a Simulation Software, 
+which will serve as their ‘portal’ for accessing their data, and the news that will be given periodically to them. 
+At regular intervals, news articles will be displayed to each team, for which they need to be connected to their ‘portal’.
+ Depending on the information provided to the participants at those instances of time, they need to interpret the given data, 
+ and then buy/sell the respective shares of the companies, to obtain profits. At the end of the round,
+ the profits shall be calculated, and the team with the higher profits, will proceed further.<br><br>
+Q. What if, my purchased shares’ worth exceeds the original budget assigned in the round?<br>
+A. If such a scenario occurs, the participant shall be disqualified from that round, and would not be allowed to participate in subsequent rounds.
+ Therefore, participants must take utmost care in ensuring that the original budget assigned to them is not exceeded by the worth of the invested shares.<br><br>
+Q. Can I participate in other events at MindSpark’17?<br>
+A. You are allowed to participate in as many events as you wish, at MindSpark’17, as long as you are able to manage your own schedule.<br><br>
+
+<b>EVENT HEADS:</b><br>
+Yashaswi Ranjan : +91 80970 08914<br>
+Yash Pawar : +91 77750 34594<br>
+Email ID : bullrun@mind-spark.org
+			<button class="modal-button"><span>Download   <i class="fa fa-download"></i></span></button>
+			</p>
+		</div>
+	</div>
+</div>
+</div>
+
+<div class="modal" id="modal-39">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Bidzkreig 1</h1>
+		<span style="float:right;"><button class="register" href="https://www.google.co.in" target="_blank">REGISTER</button></span>
+		<p style="text-align:center;">Fantasy T20 cricket (auctions)</p>
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-39')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-39')">Sturcture</button>
+			<button class="tablinks" onclick="openInfo('rules-39')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-39')">FAQs</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-39">
+			<h2>Objective :</h2>
+			<p>
+			Put your analytical skills to test and select 15 players to create your owncricket team.
+			A limited sum of virtual money will be allotted to each team for placing bids.
+ Each player up for bid will be attributed with specific points and a fixed base price. 
+The team with maximum cumulative points will be the winner.
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-39">
+			<h2>Event Structure :</h2>
+			<p>
+			<b>Round 1:</b> This round will consist of a written test in the form of multiple
+choice questions. Negative marking will be implemented, details to be
+disclosed at the time of event. All the questions will be cricket-based.<br><br>
+<b>Round 2:</b> Qualified teams will have to form a cricket team consisting of <b>at
+least 5 bowlers</b> and <b>a maximum of 2 wicket-keepers.</b> There should be <b>at least 5 Indian players.</b>
+ An all-rounder can be considered as a bowler or batsman. Each team will be permitted to buy a <b>maximum of 15 players.</b> 
+If a player has not been bought by any team, that player will not be available for bid again.
+ This round shall consist of 2 parts.<br><br>
+ <b>Part 1:</b> The round will consist auctioning of certain number of marquee
+players. The bidding process shall be the same as that used for normal players. 
+Each marquee player will have a joker card, which will be awarded to the teams answering a question based on the player correctly. The team holding the joker 
+card will be able to match the maximum bid if they so wish. The joker cards are non-transferable and are to be used only for a particular player.<br><br>
+<b>Part 2: </b>The round will consist of the auction of the remaining players in the
+roster.
+Teams will be able to choose more than 15 players only after all other teams have 15 players in their list.
+<br><b>The team with maximum cumulative points will be the winner.</b>
+ 
+
+<h2>Team and Fee Structure</h2>
+<b>Team size </b>: Maximum 2 participants per team. <br>
+ <b>Participation Fee </b> : &#8377; 100/- per team.<br>
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-39">
+			<h2>Rules :</h2>
+			<p>
+			<ol>
+			<li> Participants have to bring their valid College ID cards and the registration
+receipt during reporting.</li>
+<li> Participants are allowed to use mobile phones or calculators in the second round.</li>
+<li> Cross college teams are allowed. However, one person cannot be a part of multiple teams for the same event.</li>
+	 <li>Rules may be changed without prior intimation. Participants are requested to check the official MindSpark’17 website 
+ (<a href="https://www.mind-spark.org">www.mind-spark.org</a>) regularly for further updates.</li>
+ </ol>
+		</p>
+	</div>
+	
+		<div class="tabcontent" id="faq-39">
+		<h2>FAQs</h2>
+		<p>
+		Q. Who all can participate in this event?<br>
+A. There is no such restriction. Any undergraduate and postgraduate student 
+with a valid college ID card and a registration receipt can participate in this event.<br><br>
+Q. Will the list of players up for bid be given beforehand?<br>
+A. Yes, a list containing names of players not in the marquee list along with
+their respective points and base price will be given beforehand.<br><br>
+Q. What will happen if a team exceeds the amount of virtual money granted?<br>
+A. A warning will be given to each team if their balance reduces drastically
+but if a team still exceeds the maximum spending limit and proposes a bid,
+that team will be immediately disqualified.<br><br>
+Q. I have participated in other events of MindSpark, so can I apply?<br>
+A. You are allowed to take part in every event of MindSpark, provided you
+manage your event timings.<br><br>
+
+<b>EVENT HEADS:</b><br>
+Akash Mhetre : +91 86985 5791<br>
+Shubham Bhutada : +91 94047 37707<br>
+Email ID : bidzkrieg@mind-spark.org
+			<button class="modal-button"><span>Download   <i class="fa fa-download"></i></span></button>
+			</p>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

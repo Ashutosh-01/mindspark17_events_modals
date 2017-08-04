@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "UTF-8">
+<meta name="viewport" content="width=device-width, initial scale=1.0" />
+<link href="animate.css" rel="stylesheet"/>
+<!-- Importing Google Fotns -->
+<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+<!-- Importing font awesome style sheet for donwload icons-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body { font-family: 'Exo 2' !important; }
+.modal {
+	display:none;
+	position:fixed;
+	z-index:1;
+	padding-top:3%;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	overflow:auto;
+	background-color:rgb(0,0,0);/*Fallback color for those browsers who don't support transparent backgrounds*/
+	background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+	background-color:#fefefe;
+	margin:auto;
+	height:80%;
+	padding:2%;
+	overflow-y:auto;
+	border:1px solid #888;
+	width:85%;
+	-webkit-box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -3px rgba(0,0,0,0.2);
+	box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -3px rgba(0,0,0,0.2);
+}
+/*Styling the paragraph inside the modal*/
+.modal-content > p {
+	text-align:center;
+	padding:1px;
+}
+/*Styling the clode button */
+.close {
+	color: #aaaaaa;
+	float:right;
+	font-size: 28px;
+	font-weight: bold;
+}
+/*Styling the register button */
+.register {
+	color:white;
+	text-align:center;
+	background-color: #2ecc71;
+	position:relative;
+	font-weight: bold;
+	transition:all 0.2s;
+}
+.register:hover,
+.register:focus {
+	color: white;
+	text-decoration: none;
+	cursor:pointer;
+	background-color:#27ae60;
+	}
+
+/*Now styling the vertical tabs*/
+div.tab {
+	overflow:auto;
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
+	height:10%;
+	width:100%;
+}
+
+/*Buttons inside the tab*/
+div.tab button {
+	background-color: inherit;
+	float:left;
+	width:25%;
+	height:100%;
+	outline:none;
+	cursor:pointer;
+	text-align:center;
+	vertical:center;
+	font-size:130%;
+	vertical-align:center;
+}
+/*Change the background color of buttons on hover */
+div.tab button:hover {
+	background-color: #ddd;
+	/*Be sure to change the color from media queries also*/
+}
+/*The Hamburger menu for mobiles*/
+div.tab .icon {
+	display:none;
+}
+/*The close menu for mobiles*/
+div.tab .icon1{
+	display: none;
+}
+/*Active class for tablinks */
+div.tab button.active {
+	background-color:#ccc;
+	/*Be sure to change the color from media queries too */
+}
+/*Finally the tabcontent :p*/
+.tabcontent {
+	display:none;
+	height:64%;
+	overflow:auto;
+	padding : 6px 12px;
+	border: 1px solid #ccc;
+	border-top : none;
+	font-size : 120%;
+	transition:0s !important;
+}
+/*Let's style the modal button too 8D */ 
+.modal-button {
+	position:relative;
+	display:block;
+	margin:30px auto;
+	padding:0;
+	max-width:50%;
+	cursor:pointer;
+	overflow:hidden;
+	font-size:25px;
+	text-align:center;
+	vertical-align:middle;
+	border-width:0;
+	outline:none;
+	border-radius:2px;
+	box-shadow: 0 1px 4px rgba(0,0,0,0.6);
+	background-color: #2ecc71;
+	color: #ecf0f1;
+	transition: background-color 0.5s;
+}
+.modal-button:hover ,
+.modal-button:focus {
+	background-color:#27ae60;
+}
+.modal-button > * {
+	position:relative;
+}
+.modal-button span {
+	display:block;
+	padding: 12px 24px;
+}
+.modal-button:before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: block;
+	width: 0;
+	padding-top: 0;
+	border-radius: 0;
+	background-color: rgba(236,240,241,0.5);
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+
+}
+.modal-button:active:before {
+	width:120%;
+	padding-top:120%;
+	transition: width 0.2s ease-out, padding-top 0.2s ease-out;
+}
+@media screen and (max-width: 1062px) {
+	.modal-button {
+		width:50%;
+	}
+	/*Hiding the inactive members of tablinks*/
+	div.tab button:not(.active) {
+		display:none;
+		width:100%;
+		padding:5px;
+		height:10%;
+	}
+	.oneliners {
+	display:none;
+	}
+	.register {
+	font-size:80%;
+	}
+	div.tab button {
+		border:none;
+		outline:none;
+	}
+	div.tab button.active {
+		background-color:rgba(0,0,0,0);
+	}
+	div.tab a{
+		color:black;
+		text-decoration: none;
+	}
+	div.tab a.icon {
+		float:right;
+		display:block;
+		padding:10px;
+		top:0;
+		right:0;
+	}
+	div.tab a.icon1 {
+		float:right;
+		display:none;
+		padding:10px;
+		top:0;
+		right:0;
+	}
+	/*Following are the responsive tag styling */
+	div.tab.responsive {
+		position:relative;
+		height:auto;
+	}
+	div.tab.responsive a.icon {
+		position:absolute;
+		display:none;
+		visibility:hidden;
+		right:0;
+		top:0;
+	}
+	div.tab.responsive a.icon1 {
+		position:absolute;
+		display: block;
+		right: 0;
+		top: 0;
+	}
+	div.tab.responsive button {
+		float:none;
+		display: block;
+		padding:10px;
+		height:10%;
+		width:100%;
+		vertical-align: middle;
+		text-align:left;
+	}
+}
+/*Now styling for the desktop version */
+@media screen and (min-width: 1063px){
+	div.tab {
+		float:left;
+		border: 1px solid #ccc;
+		background-color: #f1f1f1;
+		width:20%;
+		height:75%;
+		display:inline-block;
+		position:relative;
+	}
+	.register {
+	font-size : 120%;
+	}
+	.dwnld-mobile {
+	display:none;
+	}
+	div.tab button {
+		display:block;
+		background-color: inherit;
+		color:black;
+		padding: 2% 2% 2% 2%;
+		width:100%;
+		padding-left:20px;
+		height:10%;
+		border:none;
+		outline:none;
+		font-size:140%;
+		vertical-align: middle;
+		cursor:pointer;
+		text-align: left;
+		transition: 0.3s;
+	}
+	div.tab button:hover {
+		background-color: #ddd;
+	}
+	div.tab button.active {
+		background-color: #ccc;
+	}
+	.tabcontent {
+		float:left;
+		padding :0px 12px;
+		border: 1px solid #ccc;
+		width:77%;
+		display:none;/*Stay hidden by default*/
+		border-left:none;
+		height:75%;
+	}
+	
+}
+</style>
+</head>
+<body>
+<!-- Import Jquery From Google Hosted API -->
+<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script-->
+<!-- Remember to comment one thing !! Don't import 2 jqueryies as they may have conflicts and other bad stuff -->
+<!-- Or the local script -->
+<script src="jquery.js"></script>
+<!--Now comes the jquery script that handles modal and its animations and stuff , I prefer this inline only  -->
+<script>
+$(document).ready(function () {
+	$(".close").click(function() {
+		$(this).parent().parent().slideUp(1);
+	});
+	$(".icon").click(function() {
+		$(this).parent().toggleClass("responsive");
+	});
+	$(".icon1").click(function() {
+		$(this).parent().toggleClass("responsive");
+	});
+	$(".tablinks").click(function() {
+		$(".tablinks").removeClass("active");
+		$(this).addClass("active");
+		$(this).parent().removeClass("responsive");
+	});
+	$(".modal").click(function(e) {
+        if ($(e.target).parents('.modal-content').length || $(e.target).hasClass("modal-content")) { 
+        } else { 
+           $(this).delay(745).slideUp("fast");
+	   	   $(this).children(".modal-content").removeClass("flipInX").addClass("flipOutX");
+	       $(".tablinks").removeClass("active");
+	       $(".tab button:first-child").addClass("active");
+        }
+    });
+});
+function openInfo(id) {
+	$(".tabcontent").slideUp(1);
+	$("#" + id).slideDown(1);
+}
+function openModal(id) {
+		$("#" + id).slideDown("fast");
+		$("#" + id).children(".modal-content").removeClass("flipOutX").addClass("animated flipInX");
+		$(".tabcontent").slideUp(50);
+		$(".first").slideDown(50);
+}
+</script>
+<h2 style="text-align:center">Modal Template</h2>
+
+<!-- Substantia -->
+<button onclick="openModal('modal-20')">On The Etch</button>
+<button onclick="openModal('modal-21')">Dexter's Lab</button>
+
+<div class="modal" id="modal-20">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">On The Etch</h1>
+		<span style="float:right;"><button class="register" href="https://www.google.co.in" target="_blank">REGISTER</button></span>
+		<p style="text-align:center;">Analyse and reveal a microstructure</p>
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-20')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-20')">Structure</button>
+			<button class="tablinks" onclick="openInfo('rules-20')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-20')">FAQs</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-20">
+			<h2>Objectives :</h2>
+			<p>
+			On  the  Etch  is  an  event  which  provides  a  platform  for  the  students  who  are 
+passionate  about  metallurgy  and  materials  science  to  present  their  metallographic 
+skills.  Not  only  metallographic  skills  but  also  the
+practical  thinking  and  logical 
+reasoning ability of the participants will be tested in the competition.
+The main objectives are as follows:<br>
+<ol>
+<li>
+To test the metallographic skills of students for sample preparation.
+</li><li>
+To test the logical reasoning ability o
+f students by observation of 
+microstructures of metals and alloys.
+</li><li> To make students explore more about the metallic parts used in day to day life 
+and in industry at large scale and to explore their microstructural features by 
+thinking broader at “Micro”
+level.</li></ol>
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-20">
+			<h2>Structure :</h2>
+			<p>
+			<b>Round  1</b>
+:  It  is  a  metallographic  quiz  which  comprises  of  40%  weightage  of  total 
+evaluation.<br>
+<b>Round 2</b>
+: This round consists of making and presentation of microstructure of the 
+sample  followed  by  small  question  answer  session  with  ju
+dges.  This  round 
+comprises of 60% weightage of total evaluation.
+<h2>Team and Fee Structure</h2>
+<b>Team size </b>: Maximum 2 candidates per team <br>
+ <b>Participation Fee </b> : &#8377; 50/- per team<br>
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-20">
+			<h2>Rules :</h2>
+			<p>
+			<ol><li>  Display  of  Microphotograph  (captured  on  Optical  microscope/SEM/TEM) 
+during    presentation    is    mandatory.    Participants    failing    to    produce    the 
+microphotograph may be disqualified.</li>
+<li>
+Fake micrographs will lead to the disqualification of the team.</li>
+<li> The sample must strictly be prepared by the participants.</li>
+<li> The sample selected for microstructural observation should be mounted by 
+either hot or cold mounting method. Both, cross section (Radial in case of a cylindrical specimen) and longitudinal section of the same sample must be 
+mounted together. Only longit
+udinal section of the sample will be accepted
+only
+if 
+the sample has very thin diameter i.e. less than 5 mm.</li>
+<li>The  microphotograph  captured  on  either  Optical  Microscope  OR  Scanning 
+Electron   Microscope(SEM)   OR   Transmission   Electron   microscope(TEM)   is 
+expected to be presented with following mandatory specifications
+<ol type="i">
+<li>The magnification or scale must be burnt into the micrograph.</li>
+<li>The size of the printed microphotograph must be 200mm*250 mm or A4 size.</li>
+<li>he composition of the sample is to be pres
+ented along with the micrograph. If 
+participants are unable to know the composition of their specimen sampled from an 
+unknown  component,  they  can  refer  the  available  research  papers  and  literature 
+regarding the component. If still they are unable to solve 
+the problem, they are free 
+to contact the event heads</li>
+<li>The typical features (advantages, disadvantages etc.) of the concerned 
+microstructure.</li>
+<li>Typical applications of the components having the concerned microstructure in 
+industry.</li>
+<li>A 1 or 2
+-
+page 
+hand
+-
+out comprising of summary of the specimen preparation to 
+introduce it to judges in least possible words.</li>
+<li>The mount 
+should comprise 
+of the sample whose micrograph is captured</li>
+</ol></li>
+<li>Participants are expected to prepare a sample of any failed industri
+al component 
+or any other metallic spare part which is readily available and free of cost. The 
+metal objects which 
+are generally used by us in day
+-
+to
+-
+day life will also be 
+accepted. Ferrous alloys will be preferred for sampling. This change has 
+specificall
+y been made in the competition to develop practical approach towards 
+sampling of specimens.</li>
+<li>To give more clarification regarding the points ‘5.iii’ and ‘5.iv’, 
+<b>a small session 
+will be conducted few days prior to the event</b>
+which will help participants to
+apply the theoretical concepts about different microstructures in revealing the 
+microstructures of the components used in practice. Date, timings and more details 
+about the session will be informed afterwards to the registered participants.</li>
+<li>Micrographs
+are not allowed to be captured on the day of the event.</li>
+<li>Presentation of photographs on laptops is not allowed. Only printed micrographs 
+are allowed to
+be
+present
+ed
+before the Judges.</li>
+<li>Participants should carry their college ID cards as a proof for 
+identity on the 
+day of the event along with the receipt of registration.</li>
+<li>Decision made by the judges and organizers will be final and binding 
+to 
+all the 
+partic
+ipant teams in case of any tie.</li>
+<li>
+Rules may be changed without prior intimation. Participan
+ts are expected to 
+check the MindSpark
+’17
+website (
+<a href="http://www.mind-spark.org/">www.mind-spark.org</a>
+) for the updates. In case of 
+any small query or doubt, feel free to ask the event heads.</li>
+</ol>
+			</p>
+		</div>
+		<div class="tabcontent" id="faq-20">
+		<h2>FAQs</h2>
+		Q. Who can participate in this event? <br>
+A.  Anyone  who  is  keen  on  testing  their  metallographic  knowledge  and  wants  to 
+demonstrate their skills regarding the same are welcome to participate. <br>
+Q. Can I participate in other events of MindSpark’1
+7?<br>
+A. You are free to participate in as many events as you wish. However, you 
+need 
+to 
+manage your own schedule.<br>
+Q. Do team members have to be from the same college?<br> 
+A.  No,  team  members  can  be  from  any  year,  any  branch  and  any  institution. 
+However, one person cannot be a part of 
+two 
+teams for the same event.<br>
+Q. I don’t know how to make a microstructure or use any microscope. Can I still 
+participate?<br>
+A. Yes, you ca
+n participate. Event organizers will take a small workshop about it
+, 
+the time and venue 
+for which 
+will be communicated by the organizers.<br> 
+			<h2>Contact Us :</h2>
+			<p>
+			Revathi Ambekar : +91 
+97667 88860<br>
+Sanket Ghanwat
+:
++
+91 
+87963 23532<br>
+Email ID :
+<span style="color:blue;">etch@mind-spark.org</span>
+			<button class="modal-button"><span>Download   <i class="fa fa-download"></i></span></button>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="modal" id="modal-21">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Dexter's Lab</h1>
+		<span style="float:right;"><button class="register" href="https://www.google.co.in" target="_blank">REGISTER</button></span>
+		<p style="text-align:center;">Chemistry quiz and Qualitative analysis – Titration</p>
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-21')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-21')">Structure</button>
+			<button class="tablinks" onclick="openInfo('rules-21')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-21')">FAQs</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-21">
+			<h2>Objectives :</h2>
+			<p>
+			The objective of the event, Dexter’s Lab is to provide a platform for the students 
+who  are  passionate  about  chemistry  and  its  practical  applications. 
+The  event  will 
+test the basic knowledge of chemistry along with the practical skills of participants. 
+It 
+may  involve  general  questions  about  recent  events  involving  chemistry  and  its 
+use in the world of
+technology and Human Welfare. Practical skills and knowledge 
+of Acids and Bases is your savior in this competitive lab
+-
+event. 
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-21">
+			<h2>Structure :</h2>
+			<p>
+<b>Round 1</b>
+: 
+It will consist of objective
+-
+type questions related to basic
+chemistry and 
+its application.<br>
+<b>Round  2</b>
+:  This  round  will  test  your  practical  skills.  In  the  practical  round, 
+participants  will  be  expected  to  perform  certain  simple  experiments  in 
+provided
+time  l
+imit.  Experiments  will  be  explained  before  the  concerned  rounds.  Accuracy 
+and precision in results will be given priority.<br>
+
+<b>Round  3</b>
+:  This  will be  a viva  round,  where  your  knowledge  will  be  tested by  the 
+experts in the field.
+<br>
+<br>
+<h2>Team and Fee Structure :</h2>
+Team size : Maximum 2 participants per team<br>
+Registration Fee : &#8377; 50/- per team.
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-21">
+			<h2>Rules :</h2>
+			<p>
+			<ol>
+			<li> Participants from same or different institutions may be a part of the same team. 
+However, no participant must be a part of multiple teams for the same event.</li> 
+<li>Participants must carry a valid college ID and the receipt of registration. Without 
+the men
+tioned documents, teams will not be allowed to participate in the event.</li>
+<li>Decision made by the judges and event heads will be final and binding for all the 
+participant teams.</li>
+<li>Rules  may  be  changed  without  prior  intimation.  Participants  are  requested  t
+o 
+check the MindSpark’17 website (
+<a href="https://www.mind-spark.org">www.mind-spark.org</a>
+) regularly for updates.</li></ol>
+			</p>
+		</div>
+		<div class="tabcontent" id="faq-21">
+		<h2>FAQs</h2>
+		Q. How would the practical round be conducted?<br> 
+A. The practical round will include experiments similar to those conducted in Std. 
+12th, F.E./F.Y. and also some experiments conducted in industries.<br><br> 
+Q. What type of interaction with the judge will be involved?<br> 
+A. Interaction with the judge would be a viva in which the judge would be asking 
+the participants some general questions on chemistry and certain questions on the 
+practical that the participants will be performing. <br><br>
+Q.  What  if  I  am  not  able  to  get  any  partner/  my  partner  is  not  present  when  the 
+event starts? <br>
+A. In that case, we would try to team you up with another single participant or you 
+can also participate alone in the event.<br><br> 
+Q. Can I participate in other events of MindSpark? <br>
+A. You are free to participate in as many events as you want. However, you have 
+to manage your own schedule. <br><br>
+			<h2>Contact Us :</h2>
+			<p>
+Divyansh 
+Kasture 
+:
++91 94237 04853<br>
+Kasturi Revatkar
+: 
++91 94218 05960<br>
+Email ID :
+<span style="color:blue;">dexterslab@mind-spark.org</span>
+			<button class="modal-button"><span>Download   <i class="fa fa-download"></i></span></button>
+			</p>
+		</div>
+	</div>
+</div>
+
+<!--End of Substantia -->
+<br>
+<!--Acceelro-->
+<button onclick="openModal('modal-22')">Wheelomation</button>
+<button onclick="openModal('modal-23')">The Wright Turn</button>
+<button onclick="openModal('modal-25')">Aqualympics</button>
+<button onclick="openModal('modal-26')">Contraption</button>
+
+<div class="modal" id="modal-22">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Wheelomation</h1>
+		<span style="float:right;"><button class="register" href="https://www.google.co.in" target="_blank">REGISTER</button></span>
+		<p style="text-align:center;">Maneuver your RC car around an obstacle course</p>
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-22')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-22')">Structure</button>
+			<button class="tablinks" onclick="openInfo('rules-22')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-22')">FAQs</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-22">
+			<h2>Objectives :</h2>
+			<p>
+This  event  involves  the  fabrication,  testing  and  racing  of  a  wireless  remote
+-
+controlled, 4 wheeled, IC engine 
+powered vehicle.
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-22">
+			<h2>Structure :</h2>
+			<p>
+<b>Abstract Details: </b>
+The abstract submission is mandatory and is intended to give us 
+an idea about the effort put in by the participants. The abstract must include close 
+up photos  of  your  empty  chassis,  steering  system  an
+d  suspension  system.  Even  if 
+your car is incomplete, do send your abstracts. It helps us to make sure that ready
+-
+made machines are not entertained in the qualification round.<br>
+<b>Round 1:</b> 
+Qualification Round: <br>
+This  round  will  consist  of  time  trials.  Two  laps
+are  to  be  completed  one-by-one. 
+The best lap time will be considered and relative ranking will be done accordingly. 
+First 16 teams will be shortlisted for the next round.<br>
+<b>Round 2:</b> 
+Elimination Round:<br> 
+Top 16 teams from first round will be selected for th
+is round. 
+A  modified track  shall be  disclosed  at  the  time  of  event  and  each  team  will  get  a 
+copy of all the details of the other teams and all teams will be given 15 minutes to 
+analyze the track. Each team beginning from rank 1 will get a chance to challe
+nge 
+any  team.  Any  team  can  reject  a  challenge  only  twice,  except  when  the  team  is 
+being challenged by a team ranked lower than it. If the challenge thrown by a team 
+is rejected, the next ranked team gets the chance to challenge any team. 
+If  a  challenge is
+accepted,  a time  slot  will  be  given  to  those teams  and  the  match 
+will  be  conducted.  In  this  round,  after  the  challenge,  all  the  16  teams  race  with 
+their respective competitors and the 8 winning teams will be promoted to the next round.<br>
+<b>Round  3: </b>
+Same  procedure  of  challenging  will  be  followed  after  modifying  the 
+track in Round 3. At the end of the third round, the 4 winning teams will be ranked 
+according to the time in which they complete the race. <br>
+<b>Finals:</b> 
+<ol>
+<li> The  finals  consist  of  4  matches:  Semifinal  1
+and  Semifinal  2,  followed  by  3rd 
+place playoff and the Megafinal.</li> 
+<li> Semifinal 1 will have 1<sup>st</sup>
+vs 4<sup>th</sup>
+while semifinal 2 has 2<sup>nd</sup>
+vs. 3<sup>rd</sup>.</li>
+<li> The losers of the two rounds will face each other for the 3<sup>rd</sup>
+place playoff. </li>
+<li><b>  Mega  Finals:</b>  This  will 
+feature  the  winners  of  Semifinal  1  and  Semifinal  2 
+battling it out to be crowned as the “CHAMPIONS of WHEELO”</sup>
+</ol>
+<br>
+<b>
+THE LAST DATE FOR ACCEPTING ABSTRACTS IS 16<sup>TH</sup>
+SEPTEMBER 2017.</b><br>
+<b>Team and Fees Structure</b>
+Team Size 
+:
+Minimum 2 and maximum 5 participants per team <br>
+Registration fees 
+:
+&#8377;250/-
+per team<br>
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-22">
+			<h2>Rules :</h2>
+			<p>
+			<ol>
+<li>Each team can comprise of a minimum of two members and a maximum of five 
+members. </li>
+<li>Each member must be a student with a valid ID card. All teams must be present 
+on  specified  date  for  inspection,  along  with  their  registration  receipt.  This  is  to 
+ensure 
+that the machine has been made according to the given specifications. </li>		
+<li>The eligible teams will be given their practice slots. During this time, the teams 
+can  practice  on  the  track;  however,  this  permission  is  given  on  a  first  come  first 
+serve basis. So, 
+it is advisable to secure your slot well before time</li>
+<li>Participants must use remote with frequency of band spectrum 2.4 GHz only. No 
+power supply will be given on the track. </li>
+<li>Team members are not permitted to touch either their machines or those of th
+eir 
+opponents  once  the  race  begins  (unless  there  is  a  need  to  lift  the  machine).  The 
+penalty for doing so on invalid grounds is disqualification. </li>
+<li>Teams are prohibited from purposefully damaging the machine of the opponent 
+team. If found guilty, the con
+cerned team will be disqualified. </li>
+<li>Teams are prohibited from purposefully damaging the machine of the opponent 
+team. If found guilty, the con
+cerned team will be disqualified. </li>
+<li>
+If the machine is found unsafe to run on the track, that team will be disqualified 
+from  the  race.  The 
+organizers
+’
+decision  will  be  final  and  binding  to  all  in  this 
+respect.  No  damage  to  the  track  will  be  tolerated  and 
+if  found  guilty,  the 
+respons
+ible team will be disqualified.</li>
+<li>Any vehicle disintegrating during the race will be disqualified. The vehicle must 
+remain in
+tact throughout the race. Once the race gets started, the participants must 
+complete the race. </li>
+<li> The  track  will  have  checkpoints  at  regular  intervals.  If  the  machine  halts, 
+tumbles or goes off the arena at any point, one of the team members is allowed t
+o 
+lift it up and place it at the nearest completed checkpoint. However, the timer will 
+still be running, in the meantime. </li>
+<li>Persons from different institutes can be a part of the same team. However, one 
+person cannot be a part of multiple teams for the 
+same event. 
+Only undergraduate students may participate. </li>
+<li>The judges' and organizers' decisions shall be treated as final and binding to all. 
+The organizers reserve the rights to change any/or all of the above rules as they 
+deem fit. </li>
+<li>Rules may be
+changed without prior intimation. Participants are, therefore, 
+requested to check the official MindSpark 
+17 website (<a href="https://www.mind-spark.org">www.mind-spark.org</a>
+) 
+regularly for updates. </li>	
+			</ol>
+<p style="font-size:12px;">Note : For further details about arena and car specifications, see FAQ page to download full broschure.</p>
+			</p>
+		</div>
+		<div class="tabcontent" id="faq-22">
+		<h2>FAQs</h2>
+Q. What is the eligibility to participate? <br>
+A.  All 
+UG 
+students  with  a  valid  identity  card,  of  any  institute,  are  allowed  to 
+participate. <br><br>
+Q. Can students from different educational institutes form a team? <br>
+A.   Students   from   different   colleges/educational   institutes 
+can 
+form   a   team. 
+However, one student may no
+t be a part of different teams for the same event. <br><br>
+Q. Is remote control included in measuring the dimension of the machine? <br>
+A.  No.  The  external  wireless  remote  control  used  to  control  the  machine  is  not 
+included in the machine dimensions. <br><br>
+Q. What will
+the preliminary round be like? <br>
+A. In the preliminary round, each team will be given a run of 2 individual laps and 
+the best lap time will be considered.<br><br> 
+Q. Do all the participants need to submit their abstract?<br> 
+A. Yes, all participants need to send in
+their abstracts. Also, you must send in close 
+up  photos  of  your  empty  chassis,  steering  system  and  suspension  system.  The 
+abstract enables the organizers to make sure that you are genuinely putting in effort 
+to make the car; so, even if your car is not co
+mplete do send the abstracts. It also 
+helps us to make sure that ready
+-
+made cars are not entertained in the qualification 
+round itself. <br><br>
+Q. Which parts can be bought from the market?<br> 
+A. Engine, clutch, differentials, and drive shafts (transmission system
+), tires can be 
+ready
+-
+made.  Braking  system,  gears,  servos,  shock  absorbers,  springs,  pulley, 
+pulley belt and wheel hub can be used ready
+-
+made from market. <br><br>
+Q. What parts have to be fabricated by the participants?<br> 
+A.  Steering  system,  Suspension  system  and
+Chassis  need  to  be  made  by  the 
+participants themselves. Use of ready
+-
+made components is strictly prohibited. Any 
+team  found  to  have  any  of  the  above  mentioned  parts  ready
+-
+made  will  be 
+disqualified. <br><br>
+			<h2>Contact Us :</h2>
+			<p>
+Naeem Sayyad
+:
++91 96575 35794<br>
+Amogh
+Patnaik
+: 
++91 99872 50260 <br>
+Email ID :
+<span style="color:blue;">wheelomation@mind-spark.org</span>
+			<button class="modal-button"><span>Download   <i class="fa fa-download"></i></span></button>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="modal" id="modal-23">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">The Wright Turn</h1>
+		<span style="float:right;"><button class="register" href="https://www.google.co.in" target="_blank">REGISTER</button></span>
+		<p style="text-align:center;">Make your own cardboard airplane and fly high, Maneuver your RC aeroplane skillfully in the ​sky</p>
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-23')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-23')">Structure</button>
+			<button class="tablinks" onclick="openInfo('rules-23')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-23')">FAQs</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-23">
+			<h2>Objectives :</h2>
+			<p>
+Apply  your  knowledge  and  manifest  y
+our  engineering  skills  to  build
+innovative
+gliders.
+A
+lso
+,
+compete
+your
+RC plane
+to find the most 
+agile aircraft.
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-23">
+			<h2>Structure :</h2>
+			<p>
+<b>I. GLIDERS</b><br>
+<b>Part A:</b> Make your own Glider<br>
+In  this  round,  you  have  30mins  to  make  your  glider.  We  will  provide  you  the 
+required  materials  (cardboard,  scissor,  glue,  cutter,  tape)  and 
+a  basic  design  of 
+glider will be available. However, you are allowed to bring your own design which 
+would be beneficial for you.<br>
+<b>Part B:</b> Test Flight<br>
+In this round, each team will have 3 chances to fly their gliders. Out of 3 trials, best 
+air time will be 
+measured. Points will be awarded for air time, flight and design of 
+the glider.<br><br>
+<b>II. RC PLANES</b><br>
+<b>Round 1:</b><br>
+<b>Part A:</b> Inspection Round<br>
+In this round, the plane will be tested for its design and safety constraints.<br>
+<b>Part B:</b> Test Flight<br>
+Models successfully clearing the inspection round will be given
+test flight. Teams 
+will be judged for the functionality of their model and flying skills.<br>
+<b>Part C:</b> Theory of your design<br>
+Explain the logic and science behind your design and how it flies.<br>
+<b>NOTE:</b><br>
+Those who are not able to fly their aircraft, judges will help them for their 
+test flight.<br>
+<b>Round 2:</b><br>
+<b>Part A:</b> Innovation<br>
+Solar RC Planes, Miniature Planes (which can be used for surveillance) and make 
+minimal noise, etc.<br>
+<b>Part B:</b> Practicability(Why should my plane be deployed?)<br>
+Applications such as aerial photogr
+aphy, monitoring(agriculture, construction sites, 
+wildlife  and  pooching,etc),  search  and  rescue  operations,  military  applications, 
+delivery of goods and medicines,etc.<br>
+<b>Points:</b><br>
+The  marking  scheme  will  be  notified  on  the  day  of  event.  Top  priority  will  be 
+given  to  take
+-
+off  and  landing,  application  and  innovation.  Points  will  also  be 
+awarded to clearing the checkpoints and performing aerobatics<br><br>
+<h2>Team and Fee Structure :(Gliders)</h2>
+Team size : Maximum 2 participants per team<br>
+Registration Fee : &#8377; 100/- per team.
+			</p>
+<h2>Team and Fee Structure :(RC Planes)</h2>
+Team size : Maximum 5 participants per team<br>
+Registration Fee : &#8377; 250/- per team.
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-23">
+			<h2>Rules(Gliders) :</h2>
+			<p>
+			<ol>
+<li>Participants that will use ready
+-
+made parts (wings, rudder, etc.) will be
+disqualified</li>
+<li>Gliders’ will be judged on the basis of time of flight, Range, A
+erodynamic 
+stability during flight, etc.</li>
+<li>As soon as the glider  touches the ground no further  distance covered by it will 
+be considered</li>
+<li>Based on MS
+-
+17’s theme (Towards Techno
+-
+Utopia) Gliders that have a modern 
+design will be given bonus points. (eg: 
+Morphing Wings)</li>
+
+<li>Rules  may  be  changed  without  prior  intimation.  Participants  are  requested  t
+o 
+check the MindSpark’17 website (
+<a href="https://www.mind-spark.org">www.mind-spark.org</a>
+) regularly for updates.</li></ol>
+<h2>Rules(RC Planes) :</h2>
+			<p>
+			<ol>
+<li>Participants must design and build their own aircraft. Use of ready
+-
+to
+-
+fly (RTF) 
+kits and almost ready
+-
+to
+-
+fly kits are strictly not allowed.</li>
+<li>Only
+electric  powered  RC  planes  are  allowed.  Use  of  IC  Engine  is  strictly 
+prohibited. Electric Motor of maximum 200gms is permitted</li>
+<li>Participants are free to use any material of their choice. Participants are advised 
+to  take  special  safety  precautions  for  t
+heir  aircraft.  Organizers  will  not  be 
+responsible for any damage caused to the model or its electrical components during 
+the event.</li>
+<li>Participants must be present at the event site before or at the reporting
+time. Teams arriving late will be disqualified.</li>
+<li>To avoid interference, all teams must hand over their transmitters to
+organizing team before the event.</li>
+<li>An aircraft is defined as a vehicle which experiences exactly 4 forces 
+–
+lift, drag, 
+thrust and weight at any time during its flight.</li>
+<li>The even
+t is open to all people who are not 26 years of age or older at the time 
+of the event.</li>
+<li>Students and others will be placed in separate groups and marked
+accordingly.</li>
+<li>Maximum 5 participants are allowed in each team. Team members can be from 
+same or dif
+ferent institutes.</li>
+<li>However,  one  participant  may  not  be  a  part  of  multiple  teams  for  the  same 
+event.</li>
+<li>Judges‟ and organizers‟ decision on any matter will be final and binding to all.</li>
+<li>Rules  may  be  changed  without  prior  intimation.  Participants  are  requested  to 
+check the MindSpark’17 website (
+<a href="https://www.mind-spark.org">www.mind-spark.org</a>
+) regularly for updates.</li></ol>
+			</p>
+		</div>
+		<div class="tabcontent" id="faq-23">
+		<h2>FAQs</h2>
+		Q. What is the team structure?<br>
+A.
+A team may consist of maximum of 5 people for RC Planes and maximum of 2 
+people for Gliders.<br><br>
+Q. Can I participate in other events at MindSpark’17?<br>
+A. You are allowed to participate in as many events at MindSpark’17 as long as 
+you are able to manage your own schedule. <br><br>
+Q.
+Can a team have more than one aircraft?<br>
+A.
+Yes.  A  team  may  have  more  than  one  air
+craft.
+Teams  having  a  miniature 
+aircraft (having applications) along with their plane will have an upper hand at the 
+competition.<br><br>
+<h2>Aircraft specifications(RC Planes)</h2>
+<ol>
+<li> Maximum wingspan 
+–
+40 inches</li>
+<li> Maximum
+motor power
+-
+1.5KW</li>
+<li>The voltage of the battery used should not be more than 12V.</li>
+<li>  It  is  recommendable  to  include  a  good  landing  gear  system  in  the  design  and 
+construction  phase  of  your  aircraft.  Remember,  taking
+-
+off  and  landing  are  very 
+important phas
+es of this competition. If anyone wants HAND LAUNCH, points for 
+take
+-
+off will be deducted.</li>
+</ol>
+<h2>Arena Description for RC planes :</h2>
+<ol>
+<li> Take off Zone 
+–
+10x1.5m</li>
+<li>Qualification line 
+–
+8m ahead of Take
+-
+off Zone
+</li><li>
+There  will  be  certain  checkpoints  consisting  of  poles  arranged  in  a  specific 
+manner which will be notified on the same day.</li></ol>
+			<h2>Contact Us :</h2>
+			<p>
+Aneri Desai
+:
++91 90493 25703<br>
+Anmol Jain
+:
++91 95616 07929<br>
+Email ID :
+<span style="color:blue;">wrightturn@mind-spark.org</span>
+			<button class="modal-button"><span>Download   <i class="fa fa-download"></i></span></button>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="modal" id="modal-25">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Aqualympics</h1>
+		<span style="float:right;"><button class="register" href="https://www.google.co.in" target="_blank">REGISTER</button></span>
+		<p style="text-align:center;">Build an RC boat</p>
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-25')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-25')">Structure</button>
+			<button class="tablinks" onclick="openInfo('rules-25')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-25')">FAQs</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-25">
+			<h2>Objectives :</h2>
+			<p>
+			The different aspects of engineering enable humans to travel over water. This event 
+requires  the  participant  to  design  a  remote  controlled  (RC)  boat  and  maneuver  it 
+through difficult obstacles. 
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-25">
+			<h2>Structure :</h2>
+			<p>
+<b>Round 1:</b>
+Every boat has to complete 3 rounds in the arena. The RC boats with the 
+best  lap  time  on  the  course  will  qualify  for  the  next  round.  The  number  of  teams 
+that qualify for the next round will depend on the number of participating teams in 
+the event.<br>
+<b>Round 
+2:</b>
+The  qualified  RC  boats  will  then  face  balloon  obstacles  along  the 
+course. Any boat that touches a balloon will be penalized by adding 14 seconds to 
+their lap time. Similarly,  any boat touching the walls of arena will be penalized by 
+adding  5  seconds  to
+their  lap  time.  The  RC  boats  with  the  best  lap  time  on  the 
+course  will  qualify  for  the  next  round.  The  number  of  teams  that  qualify  will 
+depend on the number of participating teams in the event.<br>
+<b>Round 3:</b>
+This will be the final round with a minimum of 2 o
+bstacles i.e balloons 
+and plastic balls. Any boat that touches the balloon will be penalized by adding 14 
+seconds  to  their  lap  time.  Similarly  any  boat  touching  the  walls  of  arena  will  be 
+penalized by adding 5 seconds to their lap time. Now there’s a twist
+,being  the fastest is not enough, points will be allotted for the circuit and design. The winner 
+will be declared on the basis of both speed and design.<br>
+<br>
+<h2>TEAM AND FEE STRUCTURE:</h2>
+<b>Team size</b>
+:
+Maximum 
+4 participants per team.<br>
+<b>
+Registration fee 
+:</b>
+&#8377;200/
+-
+per team.<br>
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-25">
+			<h2>Rules :</h2>
+			<p>
+			<ol>
+<li> Students  from  different  institutes  can  be  part  of  the  same  team.  However,  one 
+person cannot be a part of multiple teams for the same event. </li>
+<li>Students  should  build  their  own  boat.  Outsourcing  (using  readymade  kits  or 
+mechanisms) is not allowed. Violation of this rule will lead to disqualification. </li>
+<li>The  boat’s  shaft  must  touch  the  surface  of  the  water  i.e.  air  boats  are  not 
+allowed. </li>
+<li>The exterior part of the boat shouldn’t be sharp and pointed which might cause 
+damage to the arena. Any boat found damaging the arena would be disqualified. </li>
+<li>Use of IC (Internal Combustion) engine is not allowed. </li>
+<li><b>External  Motors,  batteries  and  remote  controls  are  allowed</b>
+.  There  is  no 
+restriction on numb
+er of D.C. motors used.</li>
+<li> Only  onboard  power  supply  is  allowed.  Battery  Voltage  should  not  exceed  12 
+volts. </li>
+<li>All  the  teams  will  have  to  submit  their  remotes  before  the  start  of  the 
+competition. These remotes will be handed back to the team before their turn. </li>
+<li>Laptop/personal computers are not allowed near arena. Devices using Bluetooth 
+are not allowed. </li>
+<li>The organizers are not responsible for any kind of damage to the boat once it 
+enters the arena.</li>
+<li>Rules  may  be  changed  without  prior  intimation.  Participants  are  requested  t
+o 
+check the MindSpark’17 website (
+<a href="https://www.mind-spark.org">www.mind-spark.org</a>
+) regularly for updates.</li></ol>
+<b>Specifications:</b><br>
+<ol>
+<li>Maximum length of Boat: 30 cm.</li>
+<li>Maximum width of Boat: 20 cm.</li>
+<li>Height has no restrictions but participants are recommended to keep it below 25 
+cm.</li>
+<li>Participants  are  free  to  use  any  materials  of  their  choice.  Recommended 
+ma
+terials are light weight wood (balsa), Styrofoam, or plastic corrugated sheets</li>
+			</p>
+		</div>
+		<div class="tabcontent" id="faq-25">
+		<h2>FAQs</h2>
+		Q. Who all are allowed in the arena?<br>
+A.  Out 
+of  the  4  members  one  should  be  the  driver  of  the  boat  and  only  he/she 
+(driver) will be allowed inside the arena for steering the boat.<br><br>
+Q. Who can participate?<br>
+A.  Undergraduate  students  with  valid  ID  cards  and  registration  receipt  can 
+participate.<br><br>
+Q.
+Can 
+I participate in other events at MindSpark’17?<br>
+A. You are allowed to participate in as many events at MindSpark’17 as long as 
+you are  able to manage your own schedule. You should be present near the arena 
+10 min before the event or round starts.<br><br>
+			<h2>Contact Us :</h2>
+			<p>
+Atharva Joshi
+:    +91 75887 46427<br>
+Ashish Hawale
+:    +91 89834 21625<br>
+Email ID :
+<span style="color:blue;">aqualympics@mind-spark.org</span>
+			<button class="modal-button"><span>Download   <i class="fa fa-download"></i></span></button>
+			</p>
+		</div>
+	</div>
+</div>
+
+</div>
+
+<div class="modal" id="modal-26">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Contraption</h1>
+		<span style="float:right;"><button class="register" href="https://www.google.co.in" target="_blank">REGISTER</button></span>
+		<p style="text-align:center;">Use domino effect to perform a simple task (like a Rube Goldberg machine)</p>
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-26')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-26')">Structure</button>
+			<button class="tablinks" onclick="openInfo('rules-26')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-26')">FAQs</button>
+			<button class="tablinks" onclick="openInfo('more-26')">More</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-26">
+			<h2>Objectives :</h2>
+			<p>
+Conservation  of  energy  and  mass  are  two  rules  which  govern  the  universe.  This 
+event is designed towards converting energy from one form to another and driving 
+a  series  of  events  which  will  ultimately  carry  out  the  given  task.  The  more 
+complicated the contr
+aption, higher the points earned. 
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-26">
+			<h2>Structure :</h2>
+			<p>
+<b>Problem Statement:</b><br>
+<b>SEGMENT A:</b>
+-<br>
+You have to open the 
+<b>DOOR</b>
+of house. The door can be hinged 
+anyway as you want and the material of the door can be a cardboard or thermocol.
+<br><b>SEGMENT  B:</b>
+-<br>
+As  soon  as  door  opens, 
+<b>A  BURGLAR  ALARM</b>
+should  ring. 
+There is no fixed time duration between opening the door and ringing the alarm.
+<br><b>SEGMENT C:</b>
+-<br>
+In the last segment, there will be a human profile (THE THIEF) 
+standing  at  certain  distance(not  less  than  1  feet),  with  the  help 
+of  some  energy 
+conversion you have to projectile a small stone/solid material which will fly in air 
+and  it  strike  the  thief  .  This  is  the  final  task  that  you  have  to  accomplish  i.e. 
+<b>"BEAT THE THIEF".</b><br>
+<b>ROUND 1:</b><br>
+The first round consists of abstract submissio
+n (soft copy). 
+Last date of submission of abstract is midnight of 15th September 2017. You can 
+send it on our email ID: contraption@mind-spark.org<br>
+<u>ABSTRACT DETAILS:</u> <br>
+Team name:<br>
+Team leader’s name with contact no. : <br>
+College name: <br>
+Receipt no: <br>
+All 
+participants details with contact no. :<br>
+Email id for further contact : <br>
+<b>ROUND 2:</b>
+Depending on the abstract teams will be short
+-
+listed for round II which 
+will  be  the  qualific
+ation  round.  All  teams  are  expected  to  get  4  copies  of  the 
+printed abstract for the event, clearly mentioning steps and chart, which shows all 
+Energy conversions. (If possible diagrams should be added.)(See the broschure from FAQ section for more info)<br>
+<h2>Team and Fee Structure :</h2>
+Team size : Maximum 4 participants per team<br>
+Registration Fee : &#8377; 200/- per team.
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-26">
+			<h2>Rules :</h2>
+			<p>
+			<ol>
+<li>The  minimum and  maximum tim
+e for contraption is 2 minutes and 10  minutes 
+respectively. After 10 minutes, 30 points per minute will be deducted from the total 
+score.</li>
+<li>In the first trial, 3 hand touches are allowed without deduction of points. Before 
+the fourth hand touch one would 
+be given choice to go for fourth hand touch or to 
+go  for  second  trial.  For  4th,  5th  and  6th  30,  60  and  120  points  will  be  deducted 
+respectively from the total score</li>
+<li>In case of second trial, 2 hand touches will be allowed with deduction of 50 and 
+80 poi
+nts for each. Further average of two trials will be considered. The team will 
+be disqualified if they exceed permissible number of hand touches in the respective 
+trail.</li>
+<li>A set
+-
+up time of 3 hours and 1 hour will be given for each team for first trial and 
+second trial of the model respectively. Only 2 trials are allowed.</li>
+<li>Final decision made by judges and organizers will be binding to all. </li>
+<li>Each team should perform the 2 tasks as mentioned in the problem statement in 
+the same sequence.</li>
+<li>No alteration
+in any step will be allowed during the trial of the contraption. </li>
+<li>A space of 2m*2m*3m (l*b*h) will be provided to each team. </li>
+<li>Students should carry proof of identity issued by their institution.</li>
+<li>Each team can have a maximum of 4 members. </li>
+<li>Same person cannot be a member of more than one team. All teams involving 
+common  person  as  a  participant  will  be  disqualified.</li><li>  Participants  are  required 
+to report at 7.30 a.m. </li>
+<li>Participants should take due safety measures in their models.</li>
+<li>All decisions of Judges, Event Heads and Organizers will be fin
+al and binding 
+to all participants. No arguments shall be entertained
+. </li>
+<li>Rules  may  be  changed  without  prior  intimation.  Participants  are  requested  t
+o 
+check the MindSpark’17 website (
+<a href="https://www.mind-spark.org">www.mind-spark.org</a>
+) regularly for updates.</li></ol>
+			</p>
+		</div>
+		<div class="tabcontent" id="faq-26">
+		<h2>FAQs</h2>
+Q. Who can participate in this event?<br>
+A.  Any  undergraduate  student  from  any  branch  or  a  non
+-
+engineering  course  can 
+participate in this event.<br><br>
+Q. What is the team structure?<br>
+A. A team may consist maximum of 4 participants.<br><br>
+Q. Is a team of students from different colleges allowed?<br>
+A. Yes. Team members may be from any 
+year, any branch and any college.<br><br>
+Q. Do we have to bring our own material for set up?<br>
+A. Yes, participants should bring their own set
+-
+up and all the material required for 
+the same.<br><br>
+Q. Will any changes in design be allowed after submitting the abstract? <br>
+A.  Additions  within  the  rules  will  be  allowed,  minor  changes  will  be  allowed,  of 
+course, any serious difficulties will be handled with care. The changes need to be 
+informed to the event heads at most 1 day prior to the event.<br><br>
+Q. Is the use of hydraulics and pneumatics allowed?<br>
+A. Use of hydraulics and pneumatics is allowed.<br><br>
+Q. Can I participate in other events at MindSpark’17?<br>
+A. You are allowed to participate in as many events at MindSpark’17 as long as 
+you are able to manage your own schedule. <br><br></div>
+<div class="tabcontent" id="more-26">
+			<h2>Contact Us :</h2>
+			<p>
+Shubham Sawalkar
+:
++91 73853 95488<br>
+Rohit Shelke
+:
++91 70382 59294<br>
+Email ID :
+<span style="color:blue;">contraption@mind-spark.org</span>
+			<button class="modal-button"><span>Download   <i class="fa fa-download"></i></span></button>
+			</p>
+		</div>
+	</div>
+</div>
+<!--End of Accelero -->
+<br>
+<!-- Ideam -->
+<button onclick="openModal('modal-27')">Byldan</button>
+<button onclick="openModal('modal-28')">Paper Presentation</button>
+<div class="modal" id="modal-27">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Byldam</h1>
+		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
+		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
+		<p style="margin-left:10%; margin-right:10%; text-align:center;" class="oneliners">Conceptualise and build your own techno-utopian city.</p>
+		</span>	
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-27')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-27')">Structure</button>
+			<button class="tablinks" onclick="openInfo('team-27')">Team</button>
+			<button class="tablinks" onclick="openInfo('rules-27')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-27')">FAQs</button>
+			<button class="tablinks" onclick="openInfo('contact-27')">Contact</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-27">
+			<h2>Objectives :</h2>
+			<p>
+The idea 
+for this event 
+is to harness the builder, planner and most importantly the 
+creator within. Using these qualities, 
+the teams are to propose a city.
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-27">
+			<h2>Structure :</h2>
+			<p>
+<b>Round 1:</b>
+This will be an 
+online round. All teams will be allocated a fixed budget 
+and land areas. They will be required to purchase amenities for the system from the 
+given credit. Evaluation will be done on the basis on how well the constraints have 
+been  held  up  keeping  practicali
+ty  in  mind  (we  are  still  working  on  a  systematic 
+way for expressing more creative inputs like flying cars and so on). <br>
+<b>Round  2
+:</b>
+This  will  be  the
+be  the  final  round.  Each  team  will  be  provided  a  full 
+imperial  s
+heet  on  which  they   must  provide
+a  pictorial  re
+presentation  (block 
+diagram  acceptable)  of  their  city  plan.  The  teams  are  allowed  to  use  only  the 
+inventory from the previous round<br>
+</div>
+<div class="tabcontent" id="team-27">
+<h2>Team and Fee Structure :</h2>
+Team size : Maximum 4 participants per team<br>
+Registration Fee : &#8377; 100/- per team.
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-27">
+			<h2>Rules :</h2>
+			<p>
+			<ol>
+			<li>The most creative team 
+presenting the brightest
+ideas wins.</li>
+<li>The  teams  will  be  given  a  set  amount  of  time  for 
+submission  in  first  round 
+failing which they will be disqualified.</li>
+<li>Implementation of external ideas is allowed as long as source is mentioned
+.</li>
+<li>All    team    members    must    come    with    valid    college    ID    cards    and 
+registration 
+receipt. </li>
+<li>Presentation
+of 
+designs
+will be done according to the serial number given to the 
+particular  team  at  the  time  of  commencement  of  the  event.  Hence,  no  team 
+should request for their design
+to be 
+presented
+first. </li>
+<li>The decision of the judges and the organizers will be final and bindi
+ng to all. </li>
+<li>Team  members  may  be  from  different  colleges.  However,  same  person  cannot 
+be a part of multiple teams for the same event</li>
+<li>All  teams  must  maintain  decorum  at  all  times.  Organizers  may  disqualify  any 
+team that behaves inappropriately. </li>
+<li>Rules  may  be  changed  without  prior  intimation.  Participants  are  requested  t
+o 
+check the MindSpark’17 website (
+<a href="https://www.mind-spark.org">www.mind-spark.org</a>
+) regularly for updates.</li></ol>
+			</p>
+		</div>
+		<div class="tabcontent" id="faq-27">
+		<h2>FAQs</h2>
+		Q. What is the team structure?<br>
+A. A team may consist of 4 or less members from any academic background.<br><br>
+Q. Can I participate
+in other events at MindSpark’17
+?<br>
+A.  You  are  allowed  to  participate  in as many events at MindSpark’17
+as  long  as 
+you are able to manage your own schedule. <br><br></div>
+<div class="tabcontent" id="contact-27">
+			<h2>Contact Us :</h2>
+			<p>
+Kartik Chaudhari
+:
++91 
+86986
+73422<br>
+Shreyas Dhoot 
+:
++91 
+91674
+93393<br>
+Email ID :
+<span style="color:blue;">dexterslab@mind-spark.org</span>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="modal" id="modal-28">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Paper Presentation</h1>
+		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
+		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
+		<p style="margin-left:10%; margin-right:10%; text-align:center;" class="oneliners">Paper Presentation</p>
+		</span>	
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-28')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-28')">Structure</button>
+			<button class="tablinks" onclick="openInfo('team-28')">Team</button>
+			<button class="tablinks" onclick="openInfo('rules-28')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-28')">FAQs</button>
+			<button class="tablinks" onclick="openInfo('contact-28')">Contact</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-28">
+			<h2>Objectives :</h2>
+			<p>
+To provide a platform to young engineering youth for presenting their out of box, 
+unconventional  and  innovative  solutions.  Also,  a  chance  to  develop  stage  daring 
+and presentation skills
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-28">
+			<h2>Structure :</h2>
+			<p>
+<b>Round   1:</b> 
+Participants   should   submit   the
+abstract   of   their   paper   to   team 
+Mindspark17 via email.
+The email IDs are provided at the end of each event.<br>
+<b>Round  2</b>
+:  Participants  should  submit  their  paper  to  the  judges  and  give  Power 
+point presentation of (10+2) minutes, explaining the details of their
+research paper<br></div>
+<div class="tabcontent" id="team-28">
+<h2>Team and Fee Structure :</h2>
+Team size : Maximum 3 participants per team<br>
+Registration Fee : &#8377; 50/- per team.
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-28">
+			<h2>Rules :</h2>
+			<p>
+			<ol>
+<li><b>Standard  Paper  format</b>
+:  Paper  must  be  in  any  STANDARD  format.  Paper 
+should be essentially in a two
+-
+column format & should not exceed 15 pages. Paper 
+should  be  in  Times  New  Roman  font  of  size  12.  For  headings,  you  can  use  bold 
+and a font of size  16. Paper  must contain index, abstract, introduction, point wise 
+description  of  subject  and  conclusion  and  references  at  the  end.  Paper  must  be 
+preceded by a cover page specifying the title of the paper, names of authors, their 
+college names and their contact numbers and email ids. </li>
+<li> All   papers   should   have   a   bibliography/works
+-
+cited   page   and   appropriate 
+footnotes. </li>
+<li>Papers   omitting   a   bibliography   or   using   plagiarized   material   will   be 
+automatically disqualified. </li>
+<li>Paper submitted should be strictly in PDF Format. </li>
+<li>For further details 
+-
+an example paper in IEEE format and the cover page of the 
+paper, please refer our website (www.mind-spark.org)</li>
+<li>Abstract  should  not exceed  1  page and  Paper  should  not  exceed 15 pages.  The 
+subject  of
+the  mail  with  the  attached  abstract  and  later,  the  final  paper  should  be 
+the discipline under which the paper is categorized</li>
+<li>The 
+mail should contain: 
+<ol>
+<li>Title
+-
+theme of the paper.</li> 
+<li>Name of both the authors.</li> 
+<li>Phone no of both the authors.</li> 
+<li>Email ID.</li></ol> </li>
+<li>Participants  should  submit  the  papers  with  in  the  due  time.  (before  last  day  of 
+submission, no late submissions will be entertained)</li>
+<li>Teams selected for round two will be contacted personally.</li>
+<li>Bring  your  college  I
+-
+Card  &  registration  receipt  on  event  day.  All  teams  and 
+their respective members should reach the event place in time. </li>
+<li>Please bring your power point presentation in a pen drive and mail the power 
+point presentation on your own Email ID</li>
+<li>Please  bring  2  hard  copies  of  the  su
+bmitted  paper  on  the  day  of  the  event.  Paper 
+and Power Point Presentation should be in 2003
+-
+2007 format. </li>
+<li>The teams will get 10+2 minutes for presentation followed by a Q&A session. </li>
+<li>Persons  from  different  institutions  can  be  a  part  of  the  same  tea
+m.  However, 
+one person may not be a part of multiple teams for the same event. </li>
+<li>Judges  and  organizers  reserve  the  right  to  modify  the  rules  without  prior 
+intimation. </li>
+<li>Participants can present multiple papers, based on number of registrations th
+ey 
+have done. Innovativeness of the topic under a theme will be given credit. </li>
+<li> Original  contribution  to  the  paper  will  be  highly  encouraged.  Only  pure 
+technical papers would be considered for short listing. </li>
+<li>Use your discretion to judge whether your topic fits into the chosen theme. </li> 
+<li>The list of topics will be made available on site.</li>
+<li>Rules  may  be  changed  without  prior  intimation.  Participants  are  requested  to 
+check the MindSpark’17 website (
+<a href="https://www.mind-spark.org">www.mind-spark.org</a>
+) regularly for updates.</li></ol>
+			</p>
+		</div>
+		<div class="tabcontent" id="faq-28">
+		<h2>FAQs</h2>
+		Q. What is the team structure?<br>
+A. A team may consist of maximum three candidates.<br><br> 
+Q. Can I participate in other events at MindSpark’17?<br>
+A. You are allowed to participate in as many events at MindSpark’16 as long as 
+you are able to manage your own schedule. <br><br>
+Q. Can I send paper for two or more number of topics? <br>
+A. Yes, you can. But for that you have to register that many numbers of times.<br><br> 
+Q. I belong to a different branch, can I participate? <br>
+A. Any student pursuing Bachelor’s degree of Engineering can apply. If you are 
+interested in
+the topics, you are free to apply. There is no restriction on branch or 
+year of study. <br><br>
+Q. On what parameters will my paper be evaluated? <br>
+A. Papers will be judged on the basis of content of the paper, clarity and in depth 
+knowledge  of  subject,  implement
+ation  of  the  given  theme,  presentation  and 
+communication skills, originality, innovation, simplicity of ideas and the question 
+answers round. <br><br>
+Q. Are short videos permitted to be shown during the presentation?<br> 
+A.  Yes,  you  are  allowed  to  show  short  videos
+,  but  make  sure  that  you  complete 
+your  presentation  in  given  10  minutes  including  video.  No  extra  time  will  be 
+provided for videos. <br><br>
+Q. How will I get to know if my paper has been selected for final rounds?<br> 
+A.  Participants  whose  papers  will  be  shortlisted  shall  be  informed  personally 
+through mail. <br><br>
+Q. Can I change the paper after I have been selected for the finals? <br>
+A. Yes, a deadline will be given for that. But for that consent will have to be sent 
+to us in form of an e-mail prior to any changes.<br><br>
+Q. Is an M Tech student eligible to take part?<br> 
+A.   All   Engineering   students   with   a   valid   identity   card   of   their   respective 
+educational institutes are  eligible to participate in Paper  Presentation competition. 
+However, M. Tech. students are not allowed to take 
+part. <br><br>
+Q. How much time will be allotted to present?<br> 
+A. The time allotted for each team is 10 + 2 minutes. After 10 minutes a warning 
+bell  will  ring  and  after  2  minutes  a  final  bell  will  ring.  There  will  be  negative 
+marking in case of time violation.<br><br></div>
+<div class="tabcontent" id="contact-28">
+			<h2>Contact Us :</h2>
+			<p>
+<!--
+Email ID :
+<span style="color:blue;">dexterslab@mind-spark.org</span-->
+			</p>
+		</div>
+	</div>
+</div>
+
+<!-- End of Ideam -->
+<br>
+<!-- Progidium -->
+<button onclick="openModal('modal-48')">Sudoku</button>
+<button onclick="openModal('modal-49')">Googler</button>
+
+<div class="modal" id="modal-48">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Sudoku</h1>
+		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
+		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
+		<p style="margin-left:10%; margin-right:10%; text-align:center;" class="oneliners">Solve 9x9 sudoku puzzles and brain challengers</p>
+		</span>	
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-48')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-48')">Structure</button>
+			<button class="tablinks" onclick="openInfo('team-48')">Team</button>
+			<button class="tablinks" onclick="openInfo('rules-48')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-48')">FAQs</button>
+			<button class="tablinks" onclick="openInfo('contact-48')">Contact</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-48">
+			<h2>Objectives :</h2>
+			<p>
+			An event for sudoku enthusiasts to come show-off their skills in solving
+complicated sudokus faster than anyone else.
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-48">
+			<h2>Structure :</h2>
+			<p>
+<b>Round 1:</b> This will consist of the most basic and easy 9x9 grid sudoku.<br>
+<b>Round 2:</b> The sudoku in this round will also have the same 9x9 grid, but the
+puzzle will be more difficult and some of the rules may be tweaked a bit.<br>
+<b>Round 3:</b> This round will consist of a sudoku puzzle with a change in grid style
+and rules of solving as well as an increased difficulty level.<br><br>
+Note: The selection criteria for each round will be the accuracy and speed in
+solving the sudoku puzzle.<br><br></div>
+<div class="tabcontent" id="team-48">
+<h2>Team and Fee Structure :</h2>
+Team size : Individual participants only<br>
+Registration Fee : &#8377; 50/- per team.
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-48">
+			<h2>Rules :</h2>
+			<p>
+			<ol>
+<li> Overwriting is not allowed.
+<li>Rough papers will not be permitted in the event.
+<li> Decisions taken by event heads and coordinators are final and binding and
+cannot be challenged.
+<li> A valid ID card and the receipt for the event must be carried to the event.
+<li>Rules  may  be  changed  without  prior  intimation.  Participants  are  requested  t
+o 
+check the MindSpark’17 website (
+<a href="https://www.mind-spark.org">www.mind-spark.org</a>
+) regularly for updates.</li></ol>
+			</p>
+		</div>
+		<div class="tabcontent" id="faq-48">
+		<h2>FAQs</h2>
+Q. What is the team structure?<br>
+A. Only individual students are allowed to participate, so if you have friends who
+like sudoku, they're welcome to participate separately. After all, sudoku is hardly
+something you play in a team.<br><br>
+Q. Can I participate in other events at MindSpark’17?<br>
+A. You are allowed to participate in as many events at MindSpark’17 as long as
+you are able to manage your own schedule.<br><br>
+Q. Who all can participate?<br>
+A. All Sudoku lovers are most welcome to the event.<br><br>
+Q. What do I need to bring to the event?<br>
+A. All the required material (pens, pencils, erasers and paper) will be provided to
+you. All you need to carry is a valid ID card and the receipt for the event.<br><br></div>
+<div class="tabcontent" id="contact-48">
+			<h2>Contact Us :</h2>
+			<p>
+Ananya A K : +91 80976 21282<br>
+Vaishnavi Ranade : +91 91300 94910<br>
+Email ID :
+<span style="color:blue;">sudoku@mind-spark.org</span>
+			</p>
+			
+		</div>
+	</div>
+</div>
+
+
+<div class="modal" id="modal-49">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Googler</h1>
+		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
+		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
+		<p style="margin-left:10%; margin-right:10%; text-align:center;" class="oneliners">Answer a question in the least time using Google</p>
+		</span>		
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-49')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-49')">Structure</button>
+			<button class="tablinks" onclick="openInfo('team-49')">Team</button>
+			<button class="tablinks" onclick="openInfo('rules-49')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-49')">FAQs</button>
+			<button class="tablinks" onclick="openInfo('contact-49')">Contact</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-49">
+			<h2>Objectives :</h2>
+			<p>
+			“Google” is the world’s most powerful search engine and a step towards
+“Technical Utopia”. Do you have the ability to utilize it the best? Here is our
+challenge to make everyone aware of the power of GOOGLE and also to test their
+technical as well as general knowledge. Find out how many questions you can
+make Google answer for you.
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-49">
+			<h2>Structure :</h2>
+			<p>
+<b>Round 1 :-</b> Each Team will be given 10 Questions whose answers they have to
+search over google within 10 minutes.<br><br>
+<b>Round 2 :-</b> Each team will be given 5 questions to be solved within 5 minutes.<br><br></div>
+<div class="tabcontent" id="team-49">
+<h2>Team and Fee Structure :</h2>
+Team size : Maximum 2 participants per team<br>
+Registration Fee : &#8377; 50/- per team.
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-49">
+			<h2>Rules :</h2>
+			<p>
+			<ol>
+<li> Teams are expected to maintain decorum. We reserve the right to disqualify any
+team found misbehaving.
+<li>In case of any disputes, the decision of event heads and judges will be final and
+binding to all.
+<li>Rules of the event may be changed without prior intimation. Participants are
+requested to check the MindSpark’17 website (www.mind-spark.org) regularly for
+updates.
+<li>Participants must carry their college ID card and the registration receipt.
+<li>Participants must be present on time at the given venue. Late entries will not be
+entertained.
+<li>Rules  may  be  changed  without  prior  intimation.  Participants  are  requested  to 
+check the MindSpark’17 website (
+<a href="https://www.mind-spark.org">www.mind-spark.org</a>
+) regularly for updates.</li></ol>
+			</p>
+		</div>
+		<div class="tabcontent" id="faq-49">
+		<h2>FAQs</h2>
+Q. Can I participate individually?<br>
+A. Yes, you can, if you have registered and have the registration receipt and a valid
+college/school ID with you.<br><br>
+Q. Can I participate in other events at MindSpark’17?<br>
+A. You are allowed to participate in as many events at MindSpark’17 as long as
+you are able to manage your own schedule.<br><br>
+Q. What will be selection criteria for ROUND 2?<br>
+A. Participants who will score above the cut-off score in ROUND 1 will be eligible
+for ROUND 2. Cut-off score will be decided by event heads.<br><br>
+Q. Can I be a part of more than one team in the same event?<br>
+A. No, you cannot be in two teams for the same event.<br><br>
+Q. What is the eligibility criterion?<br>
+A. Students from schools, 11th, 12th as well as First Year are eligible. There is no
+constraint of branch. The only thing you should know is how to Google!<br><br>
+Q. Which OS (operating system) will be used?<br>
+A. Ubuntu 12.04 or Windows 7. But you need not worry about it. The Google
+platform will be the same.<br><br>		</div>
+
+			<div class="tabcontent" id="contact-49">
+			<h2>Contact Us :</h2>
+			<p>
+Rushikesh D. Patangrao : +91 84839 85155<br>
+Rushi Deshpande : +91 94208 59810<br>
+Email ID :
+<span style="color:blue;">googler@mind-spark.org</span>
+			</p>
+			</div>
+	</div>
+</div>
+<!--End of Prodigium -->
+<br>
+<!-- Illuminati -->
+<button onclick="openModal('modal-43')">Chakravyuh</button>
+<button onclick="openModal('modal-44')">IndiKya</button>
+<div class="modal" id="modal-43">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Chakravyuha</h1>
+		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
+		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
+		<p style="margin-left:10%; margin-right:10%; text-align:center;" class="oneliners">Pune's largest open age quiz</p>
+		</span>
+		
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-43')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-43')">Structure</button>
+			<button class="tablinks" onclick="openInfo('team-43')">Team</button>
+			<button class="tablinks" onclick="openInfo('rules-43')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-43')">FAQs</button>
+			<button class="tablinks" onclick="openInfo('contact-43')">Contact</button>
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-43">
+			<h2>Objectives :</h2>
+			<p>
+This is an Open General Knowledge Quiz. Questions will be on History, Current
+Affairs, Business, Technology, Culture, Music, Politics, Sports etc. This is an open
+quiz; everyone can participate.
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-43">
+			<h2>Structure :</h2>
+			<p>
+<b>Round 1:</b> Written elimination round, with no multiple choice questions. No
+negative marking.<br><br>
+<b>Round 2:</b> Top 6 teams will be selected for the final round, the details of which will
+be disclosed on the spot.<br><br></div>
+<div class="tabcontent" id="team-43">
+<h2>Team and Fee Structure :</h2>
+Team size : Maximum 2 participants per team<br>
+Registration Fee : &#8377; 50/- per team.
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-43">
+			<h2>Rules :</h2>
+			<p>
+			<ol>
+<li>Quiz master’s decision will be final and binding to all.
+<li>Use of any form of electronic media is strictly not allowed. Any team found in
+violation will be disqualified on the spot.
+<li>Participants must bring their registration receipts and valid college IDs (For
+college students) or any valid ID (For others) while coming to the event.
+<li>Rules  may  be  changed  without  prior  intimation.  Participants  are  requested  to 
+check the MindSpark’17 website (
+<a href="https://www.mind-spark.org">www.mind-spark.org</a>
+) regularly for updates.</li>
+<li>In case of any disputes, the decision taken by the organizers will be considered
+final and binding to all.</ol>
+			</p>
+		</div>
+		<div class="tabcontent" id="faq-43">
+		<h2>FAQs</h2>
+Q. Who can participate in the quiz?<br>
+A. Absolutely anyone can participate. No barrier of age.<br><br>
+Q. Can I register on the spot?<br>
+A. Yes, you may register on the spot, but at your own risk. The organizers can put
+a cap on the number of registrations anytime.<br><br>
+Q. I don’t have a partner. Can I still attend the quiz?<br>
+A. Yes, you can. You are likely to find another lone-wolf among the people
+attending the quiz.
+You can form a team on the spot.<br><br>
+Q. Can I attend the quiz as a lone-wolf?<br>
+A. Yes, a team with one participant (lone-wolf) is also allowed.<br><br>
+Q. Are cross college teams allowed?<br>
+A. Yes, cross college teams are allowed. However, one participant cannot be a part
+of more than one teams for the same event.<br><br>
+Q. Can the team structure be changed after the elimination?<br>
+A. No, changes are not allowed in team structure. If selected, the same two persons
+who have written the elimination round must participate in the final round as a
+team.
+		<br><br>
+			
+		</div>
+		<div class="tabcontent" id="contact-43">
+		<h2>Contact Us :</h2>
+			<p>
+Dhananjay Jagtap : +91 94235 07558<br>
+Email ID :
+<span style="color:blue;">chakravyuh@mind-spark.org</span>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="modal" id="modal-44">
+	<div class="modal-content">
+		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">IndiKya</h1>
+		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
+		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
+		<p style="margin-left:10%; margin-right:10%; text-align:center;" class="oneliners">National level quiz about India</p>
+		</span>
+		<div class="tab">
+			<button class="tablinks active" onclick="openInfo('objective-44')">Objectives</button>
+			<button class="tablinks" onclick="openInfo('structure-44')">Structure</button>
+			<button class="tablinks" onclick="openInfo('team-44')">Team</button>
+			<button class="tablinks" onclick="openInfo('rules-44')">Rules</button>
+			<button class="tablinks" onclick="openInfo('faq-44')">FAQs</button>
+			<button class="tablinks" onclick="openInfo('contact-44')">Contact</button>
+
+			<a class="icon">☰</a>
+			<a class="icon1">X</a>
+		</div>
+		<div class="tabcontent first" id="objective-44" style="font-size : 120%">
+			<h2>Objectives :</h2>
+			<p>
+<b>Indikya, the National level India quiz, </b>is the most recent addition to Mindspark.
+It will test the true patriot in you as the questions in the quiz will be based on
+everything related to India be it sports, history, politics or even geography!<br><br>
+The event will be conducted in 6 cities (excluding Pune) with winner from each
+city round will be invited to Pune where they will be up against 6 teams selected
+from the city round held in Pune for 6 berths in the Final..
+			</p>
+		</div>
+		<div class="tabcontent" id="structure-44" style="font-size : 120%">
+			<h2>Structure :</h2>
+			<p>
+<b>City Round </b>(excluding Pune):<br>
+2 sets of pre-made questions will be mailed to Proctors from the respective cities
+wheze they will conduct the prelims and finals. The winner from each city will be
+then invited to Pune for the qualifying round.<br><br>
+<b>Pune Round:</b> A written round will be conducted in CoEP during Mindspark where
+the top 6 teams will be selected for the qualifying round.<br><br>
+<b>Qualifying Round:</b> The 6 teams from city rounds and 6 teams from Pune round
+will be randomly split into 2 groups of 6 teams each. A separate short round will be
+conducted for both the groups and 3 top teams from both the groups go through to
+the finals.<br><br>
+<b>Final Round:</b> Top 6 teams as mentioned above will be selected for the final round,
+the details of which will be disclosed on the spot.<br><br></div>
+<div class="tabcontent" id="team-44" style="font-size : 120%">
+<h2>Team and Fee Structure :</h2>
+Team size : Maximum 2 participants per team<br>
+Registration Fee : &#8377; 100/- per team.
+			</p>
+		</div>
+		<div class="tabcontent" id="rules-44" style="font-size : 120%">
+			<h2>Rules :</h2>
+			<p>
+			<ol>
+<li> Quiz master’s decision will be final and binding to all.
+<li>Use of any form of electronic media is strictly not allowed. Any team found in
+violation will be disqualified on the spot.
+<li>Participants must bring their registration receipts and valid college IDs while
+coming to the event.</li>
+<li>Rules  may  be  changed  without  prior  intimation.  Participants  are  requested  to 
+check the MindSpark’17 website (
+<a href="https://www.mind-spark.org">www.mind-spark.org</a>
+) regularly for updates.</li>
+<li>In case of any disputes, the decision taken by the organizers will be considered
+final and binding to all.</ol>
+			</p>
+		</div>
+		<div class="tabcontent" id="faq-44" style="font-size : 120%">
+		<h2>FAQs</h2>
+Q. Who can participate in the quiz?<br>
+A. Any college (UG)* student. You may be asked to present a valid ID card and
+the registration receipt.<br><br>
+Q. Can I register on the spot?<br>
+A. Yes, you may register on the spot, but at your own risk. The organizers can put
+a cap on the number of registrations anytime.<br><br>
+Q. I don’t have a partner. Can I still attend the quiz?<br>
+A. Yes, you can. You are likely to find another lone-wolf among the people
+attending the quiz. You can form a team on the spot.<br><br>
+Q. Can I attend the quiz as a lone-wolf?<br>
+A. Yes, a team with one participant (lone-wolf) is also allowed.<br><br>
+Q. Are cross college teams allowed?<br>
+A. Yes, cross college teams are allowed. However, one participant cannot be a part
+of more than one teams for the same event.<br><br>
+Q. Can the team structure be changed after the elimination?<br>
+A. No, changes are not allowed in team structure. If selected, the same two persons
+who have written the elimination round must participate in the final round a team.
+		<br><br>
+*It should be a valid degree course from a certified institute, not including CA or
+other professional courses and courses from open universities.<br><br>
+		</div>
+		<div class="tabcontent" id="contact-44" style="font-size : 120%">
+		<h2>Contact Us :</h2>
+			<p>
+Divij Ghose : +91 95270 48212<br>
+Email ID :
+<span style="color:blue;">indikya@mind-spark.org</span>
+			</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>
