@@ -13,7 +13,7 @@
 13.Indikya
 14.Search N' Destroy
 15.Robowars
-16.Virtual Reality
+16.Virtual Robotics
 17.The Amazing Race
 18.Bull Run
 19.Bitzkreig 1
