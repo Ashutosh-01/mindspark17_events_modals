@@ -1,19 +1,33 @@
+Substantia  : All Done 
+
 1.On The Etch
 2.Dexter's Lab
+
+Accelero : All Done
 3.Wheelomation
 4.The wright turn - gliders
 5.The wright turn - rc planes
 6.Aqualympics
 7.Contraption
+
+Ideam : All Done
 8.Byldan
 9.Paper Presentation
+
+Prodigium : All Done
 10.Sudoku
 11.Googler
+
+Illuminati : 1 Remaining
 12.Chakravyuha
 13.Indikya
+
+Robustus : 2 Remaining
 14.Search N' Destroy
 15.Robowars
 16.Virtual Robotics
+
+Fascinus : 3 Remaining
 17.The Amazing Race
 18.Bull Run
 19.Bitzkreig 1
