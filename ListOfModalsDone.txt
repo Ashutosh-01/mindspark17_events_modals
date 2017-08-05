@@ -20,19 +20,25 @@ Prodigium : All Done
 1.Sudoku
 2.Googler
 
-Illuminati : 1 Remaining
+Illuminati : All Done
 1.Chakravyuha
 2.Indikya
+3.Torquest
 
-Robustus : 2 Remaining
+Robustus : All Done
 1.Search N' Destroy
 2.Robowars
 3.Virtual Robotics
+4.Dogfight
+5.Bot wresting
 
-Fascinus : 3 Remaining
+Fascinus : All Done
 1.The Amazing Race
 2.Bull Run
 3.Bitzkreig 1
+4.Bitzkreig 2
+5.Flash
+6.The LAN Slam
 
 Structura : All Done 
 1.Epitome
