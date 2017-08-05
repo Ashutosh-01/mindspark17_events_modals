@@ -1,7 +1,7 @@
-# mindspark17_events_modals
+# mindspark17 events modals
 Source code for mindspark17 event modals www.mind-spark.org
 
-You need to add your modal in modal-simplified-commented.html or modal-simplified-commented-other.html
+You need to add your modal in modal-simplified-commented.html.
 
 After all modals are done both files will be concatenated
 
