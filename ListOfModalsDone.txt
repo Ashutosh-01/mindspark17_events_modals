@@ -64,3 +64,10 @@ Voltus : All Done
 2.Circuit Fixer 2
 3.Encrypto
 4.MicroApps 
+
+Cognitio : All Done 
+1.TUX
+2.HAM
+3.CNC Lathe
+4.Stairway to heaven
+5.Virtual Labs
