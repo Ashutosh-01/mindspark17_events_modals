@@ -44,7 +44,11 @@ body { font-family: 'Exo 2' !important; }
 	color: #aaaaaa;
 	float:right;
 	font-size: 28px;
+	cursor:pointer;
 	font-weight: bold;
+}
+.close:hover {
+	color:black;
 }
 /*Styling the register button */
 .register {
@@ -299,7 +303,10 @@ div.tab button.active {
 <script>
 $(document).ready(function () {
 	$(".close").click(function() {
-		$(this).parent().parent().slideUp(1);
+		$(this).parents('.modal').delay(745).slideUp("fast");
+	   	   $(this).parents('.modal-content').removeClass("flipInX").addClass("flipOutX");
+	       $(".tablinks").removeClass("active");
+	       $(".tab button:first-child").addClass("active");
 	});
 	$(".icon").click(function() {
 		$(this).parent().toggleClass("responsive");
@@ -338,6 +345,7 @@ function openModal(id) {
 <button onclick = "openModal('modal-1')">Epitome</button>
 <div class="modal" id="modal-1">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Epitome</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -418,6 +426,7 @@ function openModal(id) {
 <button onclick = "openModal('modal-2')">Conquest</button>
 <div class="modal" id="modal-2">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Conquest</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -517,6 +526,7 @@ A. Yes, when you have the same points as another participant and if your cylinde
 <button onclick = "openModal('modal-3')">Metropolis</button>
 <div class="modal" id="modal-3">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Metropolis</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -627,6 +637,7 @@ Email ID :
 <button onclick = "openModal('modal-4')">ID Civil</button>
 <div class="modal" id="modal-4">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">ID Civil</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -713,6 +724,7 @@ Email ID :
 <button onclick = "openModal('modal-5')">Assemblix</button>
 <div class="modal" id="modal-5">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Assemblix</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -800,6 +812,7 @@ Email ID :
 <button onclick = "openModal('modal-6')">Intelligent Design 2D</button>
 <div class="modal" id="modal-6">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Intelligent Design 2D</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -885,6 +898,7 @@ Email ID :
 <button onclick = "openModal('modal-7')">Intelligent Design 3D</button>
 <div class="modal" id="modal-7">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Intelligent Design 3D</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -973,6 +987,7 @@ Email ID :
 <button onclick = "openModal('modal-8')">Mechtrix</button>
 <div class="modal" id="modal-8">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Mechtrix</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -1061,6 +1076,7 @@ Email ID :
 <button onclick = "openModal('modal-9')">Turnament</button>
 <div class="modal" id="modal-9">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Turnament</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -1151,6 +1167,7 @@ Email ID :
 <button onclick = "openModal('modal-10')">Code Junkie</button>
 <div class="modal" id="modal-10">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Code Junkie</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -1236,6 +1253,7 @@ Email ID :
 <button onclick = "openModal('modal-11')">Code Junkie++</button>
 <div class="modal" id="modal-11">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Code Junkie++</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -1324,6 +1342,7 @@ Email ID :
 <button onclick = "openModal('modal-12')">Xterminate</button>
 <div class="modal" id="modal-12">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Xterminate</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -1405,6 +1424,7 @@ Email ID :
 <button onclick = "openModal('modal-13')">Retracer</button>
 <div class="modal" id="modal-13">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Retracer</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -1486,6 +1506,7 @@ Email ID :
 <button onclick = "openModal('modal-14')">Hackathon 2.0</button>
 <div class="modal" id="modal-14">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Hackathon 2.0</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -1582,6 +1603,7 @@ Email ID :
 <button onclick = "openModal('modal-15')">Circuit Fixer I</button>
 <div class="modal" id="modal-15">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Circuit Fixer I</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -1674,6 +1696,7 @@ Email ID :
 <button onclick = "openModal('modal-16')">Circuit Fixer II</button>
 <div class="modal" id="modal-16">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Circuit Fixer II</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -1773,6 +1796,7 @@ Email ID :
 <button onclick = "openModal('modal-17')">Encrypto</button>
 <div class="modal" id="modal-17">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Encrypto</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -1856,6 +1880,7 @@ Email ID :
 <button onclick = "openModal('modal-18')">MicroApps</button>
 <div class="modal" id="modal-18">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">MicroApps</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -1952,6 +1977,7 @@ Email ID :
 
 <div class="modal" id="modal-20">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">On The Etch</h1>
 <span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -2142,6 +2168,7 @@ Email ID :
 
 <div class="modal" id="modal-21">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Dexter's Lab</h1>
 <span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -2264,6 +2291,7 @@ Email ID :
 
 <div class="modal" id="modal-22">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Wheelomation</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -2484,6 +2512,7 @@ Email ID :
 
 <div class="modal" id="modal-23">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">The Wright Turn</h1>
 <span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -2600,6 +2629,7 @@ Email ID :
 
 <div class="modal" id="modal-24">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">The Wright Turn RC</h1>
 <span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -2778,6 +2808,7 @@ Email ID :
 
 <div class="modal" id="modal-25">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Aqualympics</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -2916,6 +2947,7 @@ Email ID :
 
 <div class="modal" id="modal-26">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Contraption</h1>
 <span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -3084,6 +3116,7 @@ Email ID :
 <button onclick="openModal('modal-28')">Paper Presentation</button>
 <div class="modal" id="modal-27">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Byldan</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -3203,6 +3236,7 @@ Email ID :
 
 <div class="modal" id="modal-28">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Paper Presentation</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -3374,6 +3408,7 @@ Email ID :
 
 <div class="modal" id="modal-48">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Sudoku</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -3458,6 +3493,7 @@ Email ID :
 
 <div class="modal" id="modal-49">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Googler</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -3556,6 +3592,7 @@ Email ID :
 
 <div class="modal" id="modal-45">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">TORQUEST</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -3665,6 +3702,7 @@ Email ID :
 
 <div class="modal" id="modal-43">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Chakravyuha</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -3755,6 +3793,7 @@ Email ID :
 
 <div class="modal" id="modal-44">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">IndiKya</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -3865,6 +3904,7 @@ Email ID :
 
 <div class="modal" id="modal-40">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">BIDZKREIG II </h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -3986,6 +4026,7 @@ Email ID :
 
 <div class="modal" id="modal-42">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">FLASH</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -4102,6 +4143,7 @@ Email ID :
 
 <div class="modal" id="modal-41">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">LAN Slam</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -4232,6 +4274,7 @@ Email ID :
 
 <div class="modal" id="modal-39">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Bidzkreig 1</h1>
 <span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -4325,6 +4368,7 @@ Email ID : <span style="color:blue;">bidzkrieg@mind-spark.org</span>
 
 <div class="modal" id="modal-38">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Bull Run</h1>
 <span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -4420,6 +4464,7 @@ Email ID : <span style="color:blue">bullrun@mind-spark.org</span>
 
 <div class="modal" id="modal-37">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">The Amazing Race</h1>
 <span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -4534,6 +4579,7 @@ Email ID : <span style="color:blue;">amazingrace@mind-spark.org</span>
 
 <div class="modal" id="modal-35">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">BOT WRESTLING</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -4757,6 +4803,7 @@ Email ID :
 
 <div class="modal" id="modal-34">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">DOGFIGHT</h1>
 		<span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -4969,6 +5016,7 @@ Email ID :
 <div class="modal" id="modal-36">
 
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Virtual Robotics</h1>
 <span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -5067,6 +5115,7 @@ virtualrobotics@mind-spark.org</span>
 </div>
 <div class="modal" id="modal-33">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Robowars</h1>
 <span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -5254,6 +5303,7 @@ Email ID : robowars@mind-spark.org
 
 <div class="modal" id="modal-32">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Search N' Destroy</h1>
 <span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -5432,6 +5482,7 @@ searchndestroy@mind-spark.org
 
 <div class="modal" id="modal-54">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">HAM</h1>
 <span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -5556,6 +5607,7 @@ starewaytoheaven@mind-spark.org
 
 <div class="modal" id="modal-53">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">TUX</h1>
 <span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -5652,6 +5704,7 @@ tux@mind-spark.org
 
 <div class="modal" id="modal-52">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Virtual Labs</h1>
 <span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -5765,6 +5818,7 @@ virtuallab@mind-spark.org
 
 <div class="modal" id="modal-50">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">Stareway to Heaven</h1>
 <span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
@@ -5842,6 +5896,7 @@ starewaytoheaven@mind-spark.org
 
 <div class="modal" id="modal-51">
 	<div class="modal-content">
+		<div class = "close">&#10006;</div>
 		<h1 style="text-align:center; display:block; left:50%; padding-top:0px; margin-top:0px;">CNC Lathe</h1>
 <span style="width:100%; font-size : 120%;"><button class="register" style="float:right;"href="https://www.google.co.in" target="_blank">REGISTER</button>
 		<button style="float:left;" class="register">Download   <i class="fa fa-download"></i></button>
